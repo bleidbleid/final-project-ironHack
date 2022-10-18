@@ -13,7 +13,7 @@
                 <!-- Forgot your password? -->
             </div>
 
-            <div className="login-button bg-blackish">Log in</div>
+            <div className="login-button bg-blackish">Register</div>
         </div>
     </div>
 </section>

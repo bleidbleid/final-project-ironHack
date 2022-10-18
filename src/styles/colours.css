@@ -20,7 +20,11 @@
     background-color: #EFEFEF;
   }
   
-  .bg-black {
+  .bg-blackish {
     background-color: #272727;
     color: #EFEFEF;
+  }
+
+  .blackish {
+    color: #272727;
   }
