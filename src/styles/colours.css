@@ -1,0 +1,26 @@
+/* Colors */
+.bg-yellow {
+    background-color: #FFD75B;
+  }
+  
+  .bg-red {
+    background-color: #FF9074;
+  }
+  
+  .bg-green {
+    background-color: #2B9274;
+  }
+  
+  .bg-white {
+    background-color: #FFFFFF;
+    color: #272727;
+  }
+  
+  .bg-grey {
+    background-color: #EFEFEF;
+  }
+  
+  .bg-black {
+    background-color: #272727;
+    color: #EFEFEF;
+  }
