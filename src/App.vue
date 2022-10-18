@@ -14,6 +14,10 @@
 <script setup>
 import { ref } from 'vue';
 
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY)
+
 console.log(process.env.NODE_ENV, import.meta.env.BASE_URL)
 </script>
 <style scoped>
