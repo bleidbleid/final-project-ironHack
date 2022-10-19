@@ -19,7 +19,7 @@ onMounted(async () => {
     if (!authStore.user) {
       // redirect them to logout if the user is not there
       appReady.value = true;
-      router.push({ path: "/auth/login" });
+      router.push({ name: 'login' });
     } else {
       // continue to dashboard
       // router.push({ path: "/" });

@@ -1,24 +1,30 @@
 <template>
     <section class="section">
-    <div class="login-container bg-white">
-        <form @submit.prevent="onSubmit" class="login-content">
-            <div class="login-element">
-                Email
-                <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com"/>
-            </div>
+        <div class="login-container bg-white">
+            <form @submit.prevent="onSubmit" class="login-content">
+                <div class="login-element">
+                    Email
+                    <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
+                </div>
 
-            <div class="login-element">
-                Password
-                <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
-                <!-- Forgot your password? -->
-            </div>
+                <div class="login-element">
+                    Password
+                    <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
+                    <!-- Forgot your password? -->
+                </div>
 
-            <div classe="login-button bg-blackish">
-                <input class="button" type="submit" placeholder="Text input">
-            </div>
-    </form>
-    </div>
-</section>
+                <div classe="login-button bg-blackish">
+                    <input class="button" type="submit" placeholder="Text input">
+                </div>
+                <div class="login-element">
+                    <router-link :to="{name: 'register'}">
+                        Not a member yet? Sign up
+                    </router-link>
+
+                </div>
+            </form>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -28,24 +34,30 @@ import { useAuthStore } from '../store/auth'
 
 const router = useRouter();
 const authStore = useAuthStore();
-const name = ref('');
 const email = ref('');
 const password = ref('');
 
-const onSubmit = () => {
-    authStore.login(email.value, password.value);
+const onSubmit = (async () => {
+    try{
+await     authStore.login(email.value, password.value);
+router.push({ name: 'home' })
+
+    }
+    catch (error) {
+        console.log(error)
+    }
 
     // Nos redirige al home
-    router.push({ name: 'home' })
-}
+})
 </script>
 <style scoped>
 .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -91,7 +103,7 @@ const onSubmit = () => {
 }
 
 .bg-blackish:hover {
-background-color: black;
-color: white;
+    background-color: black;
+    color: white;
 }
 </style>

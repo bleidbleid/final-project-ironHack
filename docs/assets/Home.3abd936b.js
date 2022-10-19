@@ -1,1 +1,0 @@
-import{u as s,a as u,o as r,c as l,b as o,F as c}from"./index.74ed8f56.js";const i=o("h2",null,"Home",-1),f={__name:"Home",setup(m){const e=s(),n=u();async function a(){try{await n.logout(),e.push({path:"/auth/login"})}finally{}}return(p,t)=>(r(),l(c,null,[i,o("button",{onClick:t[0]||(t[0]=_=>a()),class:"button"},"Log out")],64))}};export{f as default};
