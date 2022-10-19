@@ -1,6 +1,7 @@
 <template>
     <section class="section">
         <div class="login-container bg-white">
+            <h2>Log in</h2>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
                     Email
@@ -18,7 +19,7 @@
                 </div>
                 <div class="login-element">
                     <router-link :to="{name: 'register'}">
-                        Not a member yet? Sign up
+                        Not a member yet? <b>Sign up</b>
                     </router-link>
 
                 </div>
