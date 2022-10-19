@@ -7,11 +7,30 @@ const routes = [
         component: () => import('../views/Home.vue')
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('../views/Login.vue')
+        path: '/auth',
+        name: 'auth',
+        component: () => import('../views/Auth.vue'),
+        children: [
+                  { path: "login",
+                  name: 'login',
+                  component: () => import('../components/Login.vue')},
+                  { path: "register",
+                  name: 'register',
+                  component: () => import('../components/Register.vue')},
+                ],
     },
 ]
+
+// {
+//     path: "/auth",
+//     component: Auth,
+//     children: [
+//       { path: "login", component: SignIn },
+//       { path: "sign-up", component: SignUp },
+//     ],
+//   },
+//   { path: "/", component: Home },
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

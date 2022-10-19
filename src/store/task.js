@@ -1,37 +1,56 @@
-import { defineStore } from 'pinia'
-import { updateTask } from '../api'
+import { defineStore } from "pinia"
+import { supabase } from "../supabase"
+import { useUserStore } from "./user"
 
-export const useTaskStore = defineStore('task', {
-    // arrow function recommended for full type inference
-    state: () => {
-        return {
-            // all these properties will have their type inferred automatically
-            // Guardaremos los task que nos de supabase
-            tasks: []
-        }
-    },
+export const useTaskStore = defineStore("tasks", {
+    state: () => ({
+        tasks: null,
+    }),
     actions: {
+        async fetchTasks() {
+            const { data: tasks } = await supabase
+                .from("tasks")
+                .select("*")
+                .order("is_complete")
+                .order("id", { ascending: false })
 
-        setTask() {
-            //TODO guardar en el stado las task que nos de supabase
+            this.tasks = tasks
+            return this.tasks
         },
 
-        updateTask(id, task) {
-            // TODO modificar el estado de la task
-            // Encontrar el indice de la task con ese id y cambiar su contenido con task
+
+        // EDIT TASK
+        async editTask(title, description, id) {
+            try {
+                const { data, error } = await supabase.from("tasks")
+                    .update({ title: title, description: description })
+                    .match({ id: id })
+            } catch (error) {
+                console.log("this is my error", error)
+            }
         },
 
-        deleteTask(id) {
-            // TODO modificar el estado borrando esa task
-            // Encontramos el indice de ese id y eliminamos ese indice de la array
+        // MARK AS COMPLETED
+        async taskComplete(id, is_complete) {
+            try {
+                const { data, error } = await supabase.from("tasks")
+                    .update({ is_complete: !is_complete })
+                    .match({ id: id })
+            } catch (error) {
+                console.log("this is my error", error)
+            }
         },
-
-        addTask(task) {
-            // TODO modificar el estado de task haciendo un push de la task
-            // Comprobar que tenemos el id al insertar el registro, en caso de no tenerlo tendriamos que hacer el getTask
-        }
-
-
-
-    }
+        // ADD TASK
+        async addTask(title, description) {
+            console.log(useUserStore().user.id)
+            const { data, error } = await supabase.from("tasks").insert([
+                {
+                    user_id: useUserStore().user.id,
+                    title: title,
+                    is_complete: false,
+                    description: description,
+                },
+            ])
+        },
+    },
 })

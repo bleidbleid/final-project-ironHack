@@ -1,23 +1,56 @@
 import { defineStore } from 'pinia'
+import { createClient } from '@supabase/supabase-js'
+ 
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
+
 
 export const useAuthStore = defineStore('auth', {
-    // arrow function recommended for full type inference
-    state: () => {
-        return {
-            // all these properties will have their type inferred automatically
-            // Nos indicara si el usuario esta autenticado
-            isAuth: false,
-            // Guardaremos el id de supabase que nos dara al hacer el login
-            id: undefined
+  state: () => ({
+    user: undefined, 
+    }),
+  actions: {
+    // async fetchUser () {
+    //   const user = await supabase.auth.user();
+    //   this.user = user
+    // },
+    async register (email, password) {
+      const result = await supabase.auth.signUp({
+        email,
+        password
+      });
+      if (error) throw error; 
+      if (user) {
+      this.user = user;
+      console.log(this.user); 
+      }
+    },
+    async login (email, password) {
+        console.log(email, password)
+      const response = await supabase.auth.signInWithPassword({
+        email,
+        password
+        
+      });
+      console.log(response)
+      if (response.error) throw error;
+      if (response.data.user) {
+        this.user = response.data.user;
+        console.log(this.user); 
         }
     },
-    actions: {
-        login() {
-            // TODO cambiar el estado  de autenticacion e id del usuario
+    async logout () {
+      const resp = await supabase.auth.signOut();
+      if (error) throw error;
+      console.log (error);
+    },
+    persist: {
+      enabled: true, 
+      strategies: [
+        {
+          key: 'user',
+          storage: localStorage
         },
-
-        logout(){
-            // TODO cambiar el estado de autenticacion e id del usuario
-        }
-    }
-})
+      ],
+    },
+  },
+  });

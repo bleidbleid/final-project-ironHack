@@ -1,25 +1,43 @@
 <template>
     <section class="section">
-    <div className="login-container bg-white">
-        <div className="login-content">
-            <div className="login-element">
+    <div class="login-container bg-white">
+        <form @submit.prevent="onSubmit" class="login-content">
+            <div class="login-element">
                 Email
-                <input className="login-input bg-grey" placeholder="email@email.com"/>
+                <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com"/>
             </div>
 
-            <div className="login-element">
+            <div class="login-element">
                 Password
-                <input className="login-input bg-grey" placeholder="************" />
+                <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
                 <!-- Forgot your password? -->
             </div>
 
-            <div className="login-button bg-blackish">Register</div>
-        </div>
+            <div classe="login-button bg-blackish">
+                <input class="button" type="submit" placeholder="Text input">
+            </div>
+    </form>
     </div>
 </section>
-
 </template>
+
 <script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../store/auth'
+
+const router = useRouter();
+const authStore = useAuthStore();
+const name = ref('');
+const email = ref('');
+const password = ref('');
+
+const onSubmit = () => {
+    authStore.login(email.value, password.value);
+
+    // Nos redirige al home
+    router.push({ name: 'home' })
+}
 </script>
 <style scoped>
 .section {
