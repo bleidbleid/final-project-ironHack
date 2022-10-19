@@ -1,28 +1,28 @@
 import { defineStore } from "pinia"
 import { supabase } from "../supabase"
-import { useUserStore } from "./user"
+import { useAuthStore } from "./auth"
 
-export const useTaskStore = defineStore("tasks", {
+export const useTaskStore = defineStore("task", {
     state: () => ({
-        tasks: null,
+        task: null,
     }),
     actions: {
         async fetchTasks() {
-            const { data: tasks } = await supabase
-                .from("tasks")
+            const { data: task } = await supabase
+                .from("task")
                 .select("*")
                 .order("is_complete")
                 .order("id", { ascending: false })
 
-            this.tasks = tasks
-            return this.tasks
+            this.task = task
+            return this.task
         },
 
 
         // EDIT TASK
         async editTask(title, description, id) {
             try {
-                const { data, error } = await supabase.from("tasks")
+                const { data, error } = await supabase.from("task")
                     .update({ title: title, description: description })
                     .match({ id: id })
             } catch (error) {
@@ -33,7 +33,7 @@ export const useTaskStore = defineStore("tasks", {
         // MARK AS COMPLETED
         async taskComplete(id, is_complete) {
             try {
-                const { data, error } = await supabase.from("tasks")
+                const { data, error } = await supabase.from("task")
                     .update({ is_complete: !is_complete })
                     .match({ id: id })
             } catch (error) {
@@ -42,15 +42,19 @@ export const useTaskStore = defineStore("tasks", {
         },
         // ADD TASK
         async addTask(title, description) {
-            console.log(useUserStore().user.id)
-            const { data, error } = await supabase.from("tasks").insert([
+            console.log(useAuthStore().user.id)
+            const { data, error } = await supabase.from("task").insert([
                 {
-                    user_id: useUserStore().user.id,
+                    user_id: useAuthStore().user.user_id,
                     title: title,
                     is_complete: false,
                     description: description,
+                    date: new Date()
+
                 },
             ])
+            console.log(data, error)
+
         },
     },
 })

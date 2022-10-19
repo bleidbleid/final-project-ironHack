@@ -1,5 +1,4 @@
 <template>
-  <h1>Task App</h1>
   <router-view></router-view>
 </template>
 

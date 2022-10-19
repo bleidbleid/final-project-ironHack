@@ -11,11 +11,15 @@
                 <div class="login-element">
                     Password
                     <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
-                    <!-- Forgot your password? -->
+                </div>
+                <div class="login-element">
+                    Confirm password
+                    <input v-model="confirmPassword" id="confirmPassword" class="login-input bg-grey" type="password"
+                        placeholder="************" />
                 </div>
 
                 <div classe="login-button bg-blackish">
-                    <input class="button" type="submit" placeholder="Text input">
+                    <button class="button" type="submit" placeholder="Text input">Register</button>
                 </div>
 
             </form>
@@ -35,18 +39,20 @@ const password = ref('');
 const confirmationAlert = ref('Please, confirm your email adress')
 
 const onSubmit = (async () => {
+    if (password.value === confirmPassword.value) {
     try {
         await authStore.register(email.value, password.value);
-        router.push({ name: 'login' })
-
+        
     }
     catch (error) {
         console.log(error),
         alert('Check your email for confirmation link')
+        router.push({ name: 'login' })
     }
-
-    // Nos redirige al home
-})
+} else {
+    alert('Passwords do not match')
+}}
+)
 </script>
 <style scoped>
 .section {

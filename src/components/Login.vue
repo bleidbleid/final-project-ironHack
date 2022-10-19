@@ -15,7 +15,7 @@
                 </div>
 
                 <div classe="login-button bg-blackish">
-                    <input class="button" type="submit" placeholder="Text input">
+                    <button class="button" type="submit" placeholder="Text input">Log in</button>
                 </div>
                 <div class="login-element">
                     <router-link :to="{name: 'register'}">
