@@ -36,7 +36,7 @@ async function onClick() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 36px;
+    padding: 20px 36px;
 }
 
 .navbar-start {

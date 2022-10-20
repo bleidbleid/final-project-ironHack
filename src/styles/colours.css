@@ -1,31 +1,48 @@
 /* Colors */
+:root {
+  --yellow: #FFD75B;
+  --red: #FF9074;
+  --green:#2B9274;
+  --grey: #EFEFEF;
+  --blackish: #272727;
+  --whiteish: #F8F8F8;
+
+}
 .bg-yellow {
-    background-color: #FFD75B;
+    background-color: var(  --yellow);
   }
   
   .bg-red {
-    background-color: #FF9074;
+    background-color: var(  --red);
   }
   
   .bg-green {
-    background-color: #2B9274;
+    background-color: var(--green);
   }
   
   .bg-white {
-    background-color: #FFFFFF;
-    color: #272727;
+    background-color: white;
+    color: var( --blackish);
   }
   
   .bg-grey {
-    background-color: #EFEFEF;
-    color: #272727;
+    background-color: var(--grey);
+    color: var( --blackish);
   }
   
   .bg-blackish {
-    background-color: #272727;
-    color: #EFEFEF;
+    background-color: var( --blackish);
+    color: var(--grey);
+  }
+
+  .bg-blackish:hover {
+    background-color: black;
+    color: white;
   }
 
   .blackish {
-    color: #272727;
+    color: var( --blackish);
+  }
+  .border-blackish {
+    border: solid 1px var( --blackish);
   }

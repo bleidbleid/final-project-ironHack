@@ -1,6 +1,6 @@
 <template>
     <section class="section">
-        <div class="login-container bg-white">
+        <div class="login-container is-4 bg-white">
             <h2>Register</h2>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
@@ -65,7 +65,6 @@ const onSubmit = (async () => {
 .login-container {
     display: flex;
     flex-direction: column;
-    width: 531px;
     justify-content: center;
     align-items: center;
     padding: 86px;

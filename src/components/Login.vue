@@ -1,21 +1,21 @@
 <template>
     <section class="section">
-        <div class="login-container bg-white">
+        <div class="login-container is-4 bg-white">
             <h2>Log in</h2>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
                     Email
-                    <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
+                    <input v-model="email" class="input bg-grey" type="email" placeholder="email@email.com" />
                 </div>
 
                 <div class="login-element">
                     Password
-                    <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
+                    <input v-model="password" class="input-element bg-grey" type="password" placeholder="************" />
                     <!-- Forgot your password? -->
                 </div>
 
-                <div classe="login-button bg-blackish">
-                    <button class="button" type="submit" placeholder="Text input">Log in</button>
+                <div class="login-button ">
+                    <button class="button bg-blackish" type="submit" placeholder="Text input">Log in</button>
                 </div>
                 <div class="login-element">
                     <router-link :to="{name: 'register'}">
@@ -57,12 +57,13 @@ router.push({ name: 'home' })
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .login-container {
     display: flex;
     flex-direction: column;
-    width: 531px;
     justify-content: center;
     align-items: center;
     padding: 86px;
@@ -85,19 +86,13 @@ router.push({ name: 'home' })
     width: 100%;
 }
 
-.login-input {
-    display: flex;
-    width: 90%;
-    height: 53px;
-    margin-top: 5px;
-    padding: 0px 12px;
-}
+
 
 
 .login-button {
     text-align: center;
     align-self: center;
-    max-width: 53px;
+    width: fit-content;
     margin-top: 24px;
     padding: 5px 23px;
     font-size: 18px;

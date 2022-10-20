@@ -5,20 +5,22 @@ import { useAuthStore } from "./auth"
 
 export const useTaskStore = defineStore("task", {
     state: () => ({
-        task: null,
+        task: [],
     }),
     actions: {
-        //GO TO THIS USERS TASKS
+        //SHOW THIS USERS TASKS
         async getTasks() {
-            const { data: task } = await supabase
+            const { data: task, error } = await supabase
                 .from("task")
                 .select("*")
                 .order("is_complete")
                 .order("id", { ascending: false })
 
             this.task = task
+            console.log(task)
             return this.task
         },
+       
 
         // EDIT TASK
         async editTask(title, description, id) {
@@ -43,7 +45,7 @@ export const useTaskStore = defineStore("task", {
         },
         // ADD TASK
         async addTask(title, description) {
-            console.log(useAuthStore().user.id)
+            // console.log(useAuthStore().user.id)
             const addedTask = await supabase.from("task").insert([
                 {
                     user_id: useAuthStore().user.id,
@@ -53,5 +55,22 @@ export const useTaskStore = defineStore("task", {
                 },
             ])
         },
+
+        //DELETE TASK
+        async deleteTask (id) {
+            const res4 = await supabase
+            .from('task')
+            .delete()
+            .eq('id', id)
+          },
     },
+    persist: {
+        enabled: true,
+        strategies: [
+          {
+            key: "user",
+            storage: localStorage,
+          },
+        ],
+      },
 })

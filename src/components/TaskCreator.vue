@@ -1,6 +1,5 @@
 <template>
-    <section class="section">
-        <div class="task-component bg-white">
+        <div class="task-component is-3 bg-white">
             <h2>New task</h2>
             <form class="task-container">
                 <div class="task-element">
@@ -13,7 +12,6 @@
                     Description
                     <textarea v-model="description" class="textarea task-input bg-grey"
                         placeholder="Write thing to do"></textarea>
-
                 </div>
 
                 <div class="task-button">
@@ -21,18 +19,15 @@
                 </div>
             </form>
         </div>
-    </section>
 
 
 
     <!-- Crear un componente para visualizar el post como el lab de Tweets
     Recorrer la array para mostrarlos todos -->
-    <Tasks v-for="task in taskStore" />
 </template>
 <script setup>
 import { ref } from 'vue';
 import { useTaskStore } from '../store/task'
-import Tasks from './Tasks.vue';
 
 const taskStore = useTaskStore();
 // Al enviar el formulario hacer un push en el store de posts
@@ -45,26 +40,20 @@ const onSubmit = (e) => {
     e.preventDefault(),
     console.log('AQUIII', title.value)
     console.log('ALLAAAA', description.value)
-    taskStore.addTask(title.value, description.value);
+    if(! title.value == '' && !description.value == ''){
+        taskStore.addTask(title.value, description.value);
+    }
     title.value = '';
-    
     description.value = '';
-    taskStore.publishTask();
-
+    
 }
 </script>
 <style scoped>
-.section {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-}
+
 
 .task-component {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     justify-content: center;
     align-items: center;
     padding: 15px 36px 36px 36px;
@@ -85,7 +74,6 @@ const onSubmit = (e) => {
     width: 70%;
     gap: 16px;
 }
-
 .task-element {
     font-size: 12px;
     text-align: left;

@@ -1,21 +1,110 @@
 <template>
-     <!-- NO LI ESTIC PASSANT B LES DADES A SUPABASE -->
+
+
+     <div class="card is-3 border-blackish" :style="done ? {'background-color': 'var(--green)'} : {'background-color':'#ffffff'}">
+
+          <div class="task-delete">
+
+               <button @click="delTask()">
+                    <span class="material-symbols-outlined">
+                         close
+                    </span>
+               </button>
+          </div>
+          <div class="task-info">
+               <div class="task-title">
+                    <button @click="done = !done">
+                         <span v-if="done" class="material-symbols-outlined">
+                              select_check_box
+                         </span>
+                         <span v-else class="material-symbols-outlined">
+                              check_box_outline_blank
+                         </span>
+                    </button>
+                    <span class="title">{{props.task.title}}</span>
+
+               </div>
+               <div class="task-content">
+                    <span class="description">{{props.task.description}}</span>
+               </div>
+               <div class="task-actions">
+                    <button>
+                         <span class="material-symbols-outlined">
+                              edit
+                         </span>
+                    </button>
+               </div>
+          </div>
+     </div>
+
 </template>
 <script setup>
-import { useTaskStore } from '../store/task'
+import { ref } from 'vue';
+import { defineProps } from 'vue'
+import { useTaskStore } from "../store/task";
+const props = defineProps(['task']);
 const taskStore = useTaskStore();
-
-
-// async getTasks() {
-//             const { data: task } = await supabase
-//                 .from("task")
-//                 .select("*")
-//                 .order("is_complete")
-//                 .order("id", { ascending: false })
-
-//             this.task = task
-//             return this.task
-//         },
+const done = ref(false);
+const delTask = (async () => {
+     await taskStore.deleteTask(props.task.id);
+     taskStore.getTasks();
+})
 </script>
 <style scoped>
+.card {
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 12px;
+     box-sizing: border-box;
+     padding-top: 12px 16px 32px 16px;
+     border-color: var(--blackish);
+     border-width: 1px;
+     border-style: solid;
+     background-color: white;
+}
+
+.task-delete {
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     justify-content: flex-end;
+     align-items: flex-end;
+     padding-top: 5px;
+     padding-right: 5px;
+     padding-bottom: 5px;
+     padding-left: 5px;
+     display: flex;
+     position: relative;
+     min-width: 20px;
+     min-height: 20px;
+}
+.task-info {
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+}
+
+.task-title {
+     display: flex;
+     justify-content: left;
+     align-items: center;
+     position: relative;
+     width: 100%;
+     text-transform: uppercase;
+
+}
+
+.task-content {
+     padding-left: 18px;
+     margin-top: 12px;     
+     text-transform: capitalize;
+
+}
+.task-actions {
+     display: flex;
+     justify-content: center;
+     width: 100%;
+}
 </style>
