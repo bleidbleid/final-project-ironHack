@@ -16,8 +16,8 @@
 
                 </div>
 
-                <div class="task-button bg-blackish">
-                    <button @click="onSocors" class="button">Create</button>
+                <div class="task-button">
+                    <button @click="onSubmit" class="button bg-blackish">Create</button>
                 </div>
             </form>
         </div>
@@ -32,18 +32,16 @@
 <script setup>
 import { ref } from 'vue';
 import { useTaskStore } from '../store/task'
-import { useAuthStore } from '../store/auth'
 import Tasks from './Tasks.vue';
 
 const taskStore = useTaskStore();
-const authStore = useAuthStore();
 // Al enviar el formulario hacer un push en el store de posts
 // Tenemos que crear un action que se encarque de hacer el push
 const description = ref('');
 const title = ref('');
 
 
-const onSocors = (e) => {
+const onSubmit = (e) => {
     e.preventDefault(),
     console.log('AQUIII', title.value)
     console.log('ALLAAAA', description.value)
@@ -51,6 +49,8 @@ const onSocors = (e) => {
     title.value = '';
     
     description.value = '';
+    taskStore.publishTask();
+
 }
 </script>
 <style scoped>

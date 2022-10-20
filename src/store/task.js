@@ -2,12 +2,14 @@ import { defineStore } from "pinia"
 import { supabase } from "../supabase"
 import { useAuthStore } from "./auth"
 
+
 export const useTaskStore = defineStore("task", {
     state: () => ({
         task: null,
     }),
     actions: {
-        async fetchTasks() {
+        //GO TO THIS USERS TASKS
+        async getTasks() {
             const { data: task } = await supabase
                 .from("task")
                 .select("*")
@@ -17,7 +19,6 @@ export const useTaskStore = defineStore("task", {
             this.task = task
             return this.task
         },
-
 
         // EDIT TASK
         async editTask(title, description, id) {
@@ -43,18 +44,14 @@ export const useTaskStore = defineStore("task", {
         // ADD TASK
         async addTask(title, description) {
             console.log(useAuthStore().user.id)
-            const { data, error } = await supabase.from("task").insert([
+            const addedTask = await supabase.from("task").insert([
                 {
-                    user_id: useAuthStore().user.user_id,
-                    title: title,
+                    user_id: useAuthStore().user.id,
+                    title,
                     is_complete: false,
-                    description: description,
-                    date: new Date()
-
+                    description,
                 },
             ])
-            console.log(data, error)
-
         },
     },
 })
