@@ -15,7 +15,6 @@ export const useTaskStore = defineStore("task", {
                 .select("*")
                 .order("is_complete")
                 .order("id", { ascending: false })
-
             this.task = task
             console.log(task)
             return this.task
@@ -65,12 +64,12 @@ export const useTaskStore = defineStore("task", {
           },
     },
     persist: {
-        enabled: true,
-        strategies: [
-          {
-            key: "user",
-            storage: localStorage,
-          },
-        ],
+    enabled: true,
+    strategies: [
+      {
+        key: "user",
+        storage: localStorage,
       },
+    ],
+  },
 })

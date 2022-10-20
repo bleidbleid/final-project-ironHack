@@ -54,10 +54,7 @@ body {
   
   }
   
-  button:focus,
-  button:focus-visible {
-    outline: 1px solid #272727;
-  }
+
   
   a {
     font-weight: 500;

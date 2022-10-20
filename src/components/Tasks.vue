@@ -1,7 +1,7 @@
 <template>
 
 
-     <div class="card is-3 border-blackish" :style="done ? {'background-color': 'var(--green)'} : {'background-color':'#ffffff'}">
+     <div class="card is-3" :style="done ? {'background-color': 'var(--grey)'} : {'background-color':'#ffffff'}">
 
           <div class="task-delete">
 
@@ -27,7 +27,7 @@
                <div class="task-content">
                     <span class="description">{{props.task.description}}</span>
                </div>
-               <div class="task-actions">
+               <div class="task-actions" v-if="!done">
                     <button>
                          <span class="material-symbols-outlined">
                               edit
