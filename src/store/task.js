@@ -32,16 +32,7 @@ export const useTaskStore = defineStore("task", {
             }
         },
 
-        // MARK AS COMPLETED
-        async taskComplete(id, is_complete) {
-            try {
-                const { data, error } = await supabase.from("task")
-                    .update({ is_complete: !is_complete })
-                    .match({ id: id })
-            } catch (error) {
-                console.log("this is my error", error)
-            }
-        },
+       
         // ADD TASK
         async addTask(title, description) {
             // console.log(useAuthStore().user.id)
@@ -54,10 +45,20 @@ export const useTaskStore = defineStore("task", {
                 },
             ])
         },
+         // MARK AS COMPLETED
+         async completeTask(id, is_complete) {
+            try {
+                const { data, error } = await supabase.from("task")
+                    .update({ is_complete: !is_complete })
+                    .match({ id: id })
+            } catch (error) {
+                console.log("this is my error", error)
+            }
+        },
 
         //DELETE TASK
         async deleteTask (id) {
-            const res4 = await supabase
+            const { data, error }  = await supabase
             .from('task')
             .delete()
             .eq('id', id)

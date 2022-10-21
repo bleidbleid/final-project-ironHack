@@ -45,7 +45,7 @@ const onSubmit = (e) => {
     }
     title.value = '';
     description.value = '';
-    
+    taskStore.getTasks();
 }
 </script>
 <style scoped>

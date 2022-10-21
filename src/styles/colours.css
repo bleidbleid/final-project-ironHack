@@ -29,6 +29,11 @@
     background-color: var(--grey);
     color: var( --blackish);
   }
+
+  .bg-grey:hover {
+    background-color: white;
+    color: black;
+  }
   
   .bg-blackish {
     background-color: var( --blackish);

@@ -4,16 +4,16 @@
      <div class="card is-3" :style="done ? {'background-color': 'var(--grey)'} : {'background-color':'#ffffff'}">
 
           <div class="task-delete">
-
                <button @click="delTask()">
                     <span class="material-symbols-outlined">
                          close
                     </span>
                </button>
           </div>
+
           <div class="task-info">
                <div class="task-title">
-                    <button @click="done = !done">
+                    <button @click="doneTask()">
                          <span v-if="done" class="material-symbols-outlined">
                               select_check_box
                          </span>
@@ -22,11 +22,12 @@
                          </span>
                     </button>
                     <span class="title">{{props.task.title}}</span>
-
                </div>
+
                <div class="task-content">
                     <span class="description">{{props.task.description}}</span>
                </div>
+
                <div class="task-actions" v-if="!done">
                     <button>
                          <span class="material-symbols-outlined">
@@ -49,6 +50,17 @@ const delTask = (async () => {
      await taskStore.deleteTask(props.task.id);
      taskStore.getTasks();
 })
+
+// if (taskStore.task.is_complete.value == true) {
+//      done = true;
+// } else {
+//      done = false;
+
+// }
+const doneTask = (async () => {
+     await taskStore.completeTask(props.task.id);
+     taskStore.completeTask();
+})
 </script>
 <style scoped>
 .card {
@@ -58,7 +70,7 @@ const delTask = (async () => {
      align-items: center;
      gap: 12px;
      box-sizing: border-box;
-     padding-top: 12px 16px 32px 16px;
+     padding: 12px 16px 32px 16px;
      border-color: var(--blackish);
      border-width: 1px;
      border-style: solid;
@@ -80,6 +92,7 @@ const delTask = (async () => {
      min-width: 20px;
      min-height: 20px;
 }
+
 .task-info {
      display: flex;
      flex-direction: column;
@@ -98,10 +111,11 @@ const delTask = (async () => {
 
 .task-content {
      padding-left: 18px;
-     margin-top: 12px;     
+     margin-top: 12px;
      text-transform: capitalize;
 
 }
+
 .task-actions {
      display: flex;
      justify-content: center;

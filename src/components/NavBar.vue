@@ -8,7 +8,7 @@
 
 
         <div class="navbar-end">
-            <button @click="onClick()" class="button">Log out</button>
+            <button @click="onClick()" class="button bg-grey">Log out</button>
 
         </div>
     </nav>

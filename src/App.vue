@@ -4,14 +4,19 @@
 
 <script setup>
 import { onMounted } from "vue";
-import { storeToRefs } from "pinia";
+import { ref } from "vue";
+import { createPinia } from 'pinia'
+import piniaPersist from 'pinia-plugin-persist';
 import { useRouter } from "vue-router";
 import { useAuthStore } from "./store/auth.js";
-import { ref } from "vue";
+import { useTaskStore } from "./store/task.js";
 
 const router = useRouter();
 const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
+const taskStore = useTaskStore();
+
+const pinia = createPinia();
+pinia.use(piniaPersist)
 
 onMounted(async () => {
   const appReady = ref(null);
