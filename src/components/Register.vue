@@ -36,7 +36,7 @@ const router = useRouter();
 const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
-const confirmationAlert = ref('Please, confirm your email adress')
+// const confirmationAlert = ref('Please, confirm your email adress')
 
 const onSubmit = (async () => {
     if (password.value === confirmPassword.value) {

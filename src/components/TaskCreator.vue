@@ -1,24 +1,25 @@
 <template>
-        <div class="task-component is-3 bg-white">
-            <h2>New task</h2>
-            <form class="task-container">
-                <div class="task-element">
-                    Title
-                    <input v-model="title" class="text task-input bg-grey" placeholder="Title">
+    <div class="task-component is-3 bg-white">
+        <h2>New task</h2>
+        <form class="task-container">
+            <div class="task-element">
+                Title
+                <input v-model="title" class="text task-input bg-grey" placeholder="Title">
 
-                </div>
+            </div>
 
-                <div class="task-element">
-                    Description
-                    <textarea v-model="description" class="textarea task-input bg-grey"
-                        placeholder="Write thing to do"></textarea>
-                </div>
+            <div class="task-element">
+                Description
+                <textarea v-model="description" class="textarea task-input bg-grey"
+                    placeholder="Description of what I have to do">
+                    </textarea>
+            </div>
 
-                <div class="task-button">
-                    <button @click="onSubmit" class="button bg-blackish">Create</button>
-                </div>
-            </form>
-        </div>
+            <div class="task-button">
+                <button @click="onSubmit" class="button bg-blackish">Create</button>
+            </div>
+        </form>
+    </div>
 
 
 
@@ -38,9 +39,9 @@ const title = ref('');
 
 const onSubmit = (e) => {
     e.preventDefault(),
-    console.log('AQUIII', title.value)
+        console.log('AQUIII', title.value)
     console.log('ALLAAAA', description.value)
-    if(! title.value == '' && !description.value == ''){
+    if (!title.value == '' && !description.value == '') {
         taskStore.addTask(title.value, description.value);
     }
     title.value = '';
@@ -49,8 +50,6 @@ const onSubmit = (e) => {
 }
 </script>
 <style scoped>
-
-
 .task-component {
     display: flex;
     flex-direction: column;
@@ -74,6 +73,7 @@ const onSubmit = (e) => {
     width: 70%;
     gap: 16px;
 }
+
 .task-element {
     font-size: 12px;
     text-align: left;

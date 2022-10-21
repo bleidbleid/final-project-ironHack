@@ -1,5 +1,5 @@
 <template>
-     <div class="card is-3">
+     <div class="card is-3" :class="{colorDone : !props.task.is_complete}">
 
           <div class="task-delete">
                <button @click="delTask()">
@@ -30,7 +30,7 @@
                     <span class="description">{{props.task.description}}</span>
                </div>
 
-               <div class="task-actions" v-if="done">
+               <div class="task-actions" v-if="props.task.is_complete">
                     <button>
                          <span class="material-symbols-outlined">
                               edit
@@ -62,6 +62,10 @@ const tascaFeta = (async (boolean, id) => {
      await taskStore.getTasks();
      console.log(id)
 })
+
+const colorDone = ({
+  active: true,
+})
 </script>
 <style scoped>
 .card {
@@ -76,6 +80,11 @@ const tascaFeta = (async (boolean, id) => {
      border-width: 1px;
      border-style: solid;
      background-color: white;
+}
+
+.colorDone {
+     background-color: var(--grey);
+
 }
 
 .task-delete {
