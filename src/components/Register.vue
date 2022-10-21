@@ -18,8 +18,8 @@
                         placeholder="************" />
                 </div>
 
-                <div classe="login-button bg-blackish">
-                    <button class="button" type="submit" placeholder="Text input">Register</button>
+                <div classe="login-button">
+                    <button class="button bg-blackish" type="submit" placeholder="Text input">Register</button>
                 </div>
 
             </form>

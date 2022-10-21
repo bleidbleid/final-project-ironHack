@@ -13,7 +13,7 @@ export const useTaskStore = defineStore("task", {
             const { data: task, error } = await supabase
                 .from("task")
                 .select("*")
-                .order("is_complete")
+                // .order("is_complete")
                 .order("id", { ascending: false })
             this.task = task
             console.log(task)
@@ -47,13 +47,14 @@ export const useTaskStore = defineStore("task", {
         },
          // MARK AS COMPLETED
          async completeTask(id, is_complete) {
+             console.log(is_complete)
             try {
                 const { data, error } = await supabase.from("task")
-                    .update({ is_complete: !is_complete })
+                    .update({ is_complete: is_complete })
                     .match({ id: id })
-            } catch (error) {
-                console.log("this is my error", error)
-            }
+                } catch (error) {
+                    console.log("this is my error", error)
+                }
         },
 
         //DELETE TASK
@@ -64,13 +65,13 @@ export const useTaskStore = defineStore("task", {
             .eq('id', id)
           },
     },
-    persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "user",
-        storage: localStorage,
-      },
-    ],
-  },
+//     persist: {
+//     enabled: true,
+//     strategies: [
+//       {
+//         key: "user",
+//         storage: localStorage,
+//       },
+//     ],
+//   },
 })

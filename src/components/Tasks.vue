@@ -1,7 +1,5 @@
 <template>
-
-
-     <div class="card is-3" :style="done ? {'background-color': 'var(--grey)'} : {'background-color':'#ffffff'}">
+     <div class="card is-3">
 
           <div class="task-delete">
                <button @click="delTask()">
@@ -13,22 +11,26 @@
 
           <div class="task-info">
                <div class="task-title">
-                    <button @click="doneTask()">
-                         <span v-if="done" class="material-symbols-outlined">
-                              select_check_box
+                    <button v-if="!props.task.is_complete" @click="tascaFeta(true, props.task.id)">
+                         <span class="material-symbols-outlined">
+                              check_box
                          </span>
-                         <span v-else class="material-symbols-outlined">
+                    </button>
+                    <button v-else @click="tascaFeta(false, props.task.id)">
+
+                         <span class="material-symbols-outlined">
                               check_box_outline_blank
                          </span>
                     </button>
                     <span class="title">{{props.task.title}}</span>
+
                </div>
 
                <div class="task-content">
                     <span class="description">{{props.task.description}}</span>
                </div>
 
-               <div class="task-actions" v-if="!done">
+               <div class="task-actions" v-if="done">
                     <button>
                          <span class="material-symbols-outlined">
                               edit
@@ -43,23 +45,22 @@
 import { ref } from 'vue';
 import { defineProps } from 'vue'
 import { useTaskStore } from "../store/task";
-const props = defineProps(['task']);
+const props = defineProps({ task: Object });
 const taskStore = useTaskStore();
-const done = ref(false);
+const done = ref(props.task.is_complete.value);
+
 const delTask = (async () => {
      await taskStore.deleteTask(props.task.id);
-     taskStore.getTasks();
+     await taskStore.getTasks();
 })
 
-// if (taskStore.task.is_complete.value == true) {
-//      done = true;
-// } else {
-//      done = false;
-
-// }
-const doneTask = (async () => {
-     await taskStore.completeTask(props.task.id);
-     taskStore.completeTask();
+// const doneTask = (async () => {
+// })
+const tascaFeta = (async (boolean, id) => {
+     done.value = boolean;
+     await taskStore.completeTask(props.task.id, boolean);
+     await taskStore.getTasks();
+     console.log(id)
 })
 </script>
 <style scoped>

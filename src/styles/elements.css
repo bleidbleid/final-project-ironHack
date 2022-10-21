@@ -38,7 +38,7 @@ body {
     overflow: auto;
   }
   
-  input {
+  input [type=text] {
     display: flex;
     width: 90%;
     height: 53px;
@@ -46,6 +46,7 @@ body {
     padding: 12px;
     overflow: visible;
   }
+  
   textarea:checked, textarea:active,
   input:checked, input:active {
     color: white;
