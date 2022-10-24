@@ -3,15 +3,19 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  //Folder where it will create the build
-  build: { outDir: 'docs' },
-
-  //We check if we are in production
-  //the base is the name of the repository
-  //if not root
-  //Ternary operator
-  //condition ? 'repository-name' : '/'
-
-  base: process.env.NODE_ENV === 'development' ?'/': '/final-project-ironHack/'
+    plugins: [vue()],
+    base: process.env.NODE_ENV === 'production' ? '/nombre-repositorio/' : '/',
+    build: {
+        outDir: 'docs',
+        rollupOptions: {
+            output: {
+                entryFileNames: `assets/file_[name].[hash].js`,
+                chunkFileNames: `assets/file_[name].[hash].js`,
+                assetFileNames: `assets/file_[name].[hash].[ext]`,
+            },
+        }
+    },
+    server: {
+        base: process.env.NODE_ENV === 'production' ? '/nombre-repositorio/' : '/',
+    }
 })

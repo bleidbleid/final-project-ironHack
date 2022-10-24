@@ -149,7 +149,9 @@ const submitEdit = (async () => {
 
 .task-title {
      display: flex;
-     font-family: 'Oswald', sans-serif;
+     /* font-family: 'Oswald', sans-serif; */
+     font-family: 'Space Grotesk', sans-serif;
+
      font-size: 1.5rem;
      font-weight: 600;
      justify-content: left;
