@@ -1,16 +1,16 @@
 <template>
     <section class="section">
         <div class="login-container is-4 bg-white">
-            <h2>Log in</h2>
+            <h2>Welcome to Ka0sn't</h2>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
                     Email
-                    <input v-model="email" class="input bg-grey" type="email" placeholder="email@email.com" />
+                    <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
                 </div>
 
                 <div class="login-element">
                     Password
-                    <input v-model="password" class="input-element bg-grey" type="password" placeholder="************" />
+                    <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
                     <!-- Forgot your password? -->
                 </div>
 
@@ -18,9 +18,12 @@
                     <button class="button bg-blackish" type="submit" placeholder="Text input">Log in</button>
                 </div>
                 <div class="login-element">
-                    <router-link :to="{name: 'register'}">
-                        Not a member yet? <b>Sign up</b>
-                    </router-link>
+                    <article>
+
+                        <router-link :to="{name: 'register'}">
+                            Not a member yet? <b>Sign up</b>
+                        </router-link>
+                    </article>
 
                 </div>
             </form>
@@ -52,6 +55,9 @@ router.push({ name: 'home' })
 })
 </script>
 <style scoped>
+article {
+    text-align: center;
+}
 .section {
     display: flex;
     flex-direction: column;
@@ -59,6 +65,7 @@ router.push({ name: 'home' })
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-image: url(../assets/background.jpg);
 }
 
 .login-container {
@@ -81,12 +88,19 @@ router.push({ name: 'home' })
 }
 
 .login-element {
+    
     font-size: 12px;
     text-align: left;
     width: 100%;
 }
 
-
+.login-input {
+    display: flex;
+    width: 90%;
+    height: 53px;
+    margin-top: 5px;
+    padding: 0px 12px;
+}
 
 
 .login-button {

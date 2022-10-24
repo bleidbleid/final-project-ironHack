@@ -3,17 +3,24 @@
         <h2>New task</h2>
         <form class="task-container">
             <div class="task-element">
-                Title
+                Title *
                 <input v-model="title" class="text task-input bg-grey" placeholder="Title">
-
             </div>
 
             <div class="task-element">
-                Description
+                Description *
                 <textarea v-model="description" class="textarea task-input bg-grey"
                     placeholder="Description of what I have to do">
                     </textarea>
             </div>
+            <!-- <div class="task-element">
+                Priority
+                <select v-model="priority" multiple class="bg-none">
+                    <option @click="myPriority" class="priority bg-grey" value="1">Low</option>
+                    <option @click="myPriority" class="priority bg-grey" value="2">Medium</option>
+                    <option @click="myPriority" class="priority bg-grey" value="3">High</option>
+                </select>
+            </div> -->
 
             <div class="task-button">
                 <button @click="onSubmit" class="button bg-blackish">Create</button>
@@ -21,10 +28,6 @@
         </form>
     </div>
 
-
-
-    <!-- Crear un componente para visualizar el post como el lab de Tweets
-    Recorrer la array para mostrarlos todos -->
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -35,21 +38,32 @@ const taskStore = useTaskStore();
 // Tenemos que crear un action que se encarque de hacer el push
 const description = ref('');
 const title = ref('');
+const priority = ref();
+
+// const myPriority = () => {
+//     priority = value;
+//     console.log(value);
+// }
 
 
-const onSubmit = (e) => {
-    e.preventDefault(),
-        console.log('AQUIII', title.value)
-    console.log('ALLAAAA', description.value)
+const onSubmit = (async (e) => {
+    e.preventDefault()
+    // console.log('AQUIII', title.value)
+    // console.log('ALLAAAA', description.value)
     if (!title.value == '' && !description.value == '') {
-        taskStore.addTask(title.value, description.value);
+        await taskStore.addTask(title.value, description.value);
+        await taskStore.getTasks();
+        title.value = '';
+        description.value = '';
     }
-    title.value = '';
-    description.value = '';
-    taskStore.getTasks();
-}
+})
 </script>
 <style scoped>
+.priority {
+    padding: 6px 16px;
+    margin-bottom: 4px;
+}
+
 .task-component {
     display: flex;
     flex-direction: column;
@@ -88,5 +102,14 @@ const onSubmit = (e) => {
     height: 53px;
     margin-top: 5px;
     padding: 0px 12px;
+}
+
+.task-button {
+    text-align: center;
+    align-self: center;
+    width: fit-content;
+    margin-top: 24px;
+    padding: 5px 23px;
+    font-size: 18px;
 }
 </style>

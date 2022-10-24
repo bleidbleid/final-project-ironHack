@@ -39,6 +39,10 @@
     background-color: var( --blackish);
     color: var(--grey);
   }
+  .bg-none {
+    background-color: transparent;
+    color: var(--blackish);
+  }
 
   .bg-blackish:hover {
     background-color: black;
@@ -47,6 +51,9 @@
 
   .blackish {
     color: var( --blackish);
+  }
+  .blackish:hover {
+    color: black;
   }
   .border-blackish {
     border: solid 1px var( --blackish);

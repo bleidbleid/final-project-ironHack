@@ -1,25 +1,43 @@
 <template>
     <section class="section">
         <div class="login-container is-4 bg-white">
-            <h2>Register</h2>
+            <article class="welcome">
+                <h2>Welcome to Ka0sn't</h2>
+                <p>A place where entropy does not exist</p>
+            </article>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
-                    Email
+                    <!-- <label> -->
+                        Email
+                    <!-- </label> -->
                     <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
                 </div>
 
                 <div class="login-element">
-                    Password
+                    <!-- <label> -->
+                        Password
+                    <!-- </label> -->
                     <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
                 </div>
                 <div class="login-element">
-                    Confirm password
+                    <!-- <label> -->
+                        Confirm password
+                    <!-- </label> -->
                     <input v-model="confirmPassword" id="confirmPassword" class="login-input bg-grey" type="password"
                         placeholder="************" />
                 </div>
 
-                <div classe="login-button">
+                <div class="login-button">
                     <button class="button bg-blackish" type="submit" placeholder="Text input">Register</button>
+                </div>
+                <div class="login-element">
+                    <article>
+
+                        <router-link :to="{name: 'login'}">
+                            Already a member? <b>Log in</b>
+                        </router-link>
+                    </article>
+
                 </div>
 
             </form>
@@ -55,11 +73,23 @@ const onSubmit = (async () => {
 )
 </script>
 <style scoped>
+article {
+    text-align: center;
+}
 .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../assets/background.jpg);
+}
+.welcome {
+margin-bottom: 24px;
+}
+.welcome h2 {
+    margin: 0%;
 }
 
 .login-container {
@@ -99,7 +129,7 @@ const onSubmit = (async () => {
 .login-button {
     text-align: center;
     align-self: center;
-    max-width: 53px;
+    width: fit-content;
     margin-top: 24px;
     padding: 5px 23px;
     font-size: 18px;
