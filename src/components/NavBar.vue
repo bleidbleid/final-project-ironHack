@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar bg-blackish" role="navigation" aria-label="main navigation">
+    <nav class="navbar bg-blue" role="navigation" aria-label="main navigation">
         <div class="navbar-start">
             <a href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                <img src="/logo.png" width="88" >
             </a>
         </div>
 

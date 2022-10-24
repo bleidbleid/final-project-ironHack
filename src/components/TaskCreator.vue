@@ -1,7 +1,7 @@
 <template>
-    <div class="task-component is-3 bg-white">
+    <div class="task-component item1 bg-white">
         <h2>New task</h2>
-        <form class="task-container">
+        <form class="task-container ">
             <div class="task-element">
                 Title *
                 <input v-model="title" class="text task-input bg-grey" placeholder="Title">
@@ -23,7 +23,7 @@
             </div> -->
 
             <div class="task-button">
-                <button @click="onSubmit" class="button bg-blackish">Create</button>
+                <button @click="onSubmit" class="button bg-blue">Create</button>
             </div>
         </form>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <section class="section">
         <div class="login-container is-4 bg-white">
-            <h2>Welcome to Ka0sn't</h2>
+            <h2>Welcome to <img src="/logoBlack.png" width="88"> </h2>
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
                     Email
@@ -15,12 +15,12 @@
                 </div>
 
                 <div class="login-button ">
-                    <button class="button bg-blackish" type="submit" placeholder="Text input">Log in</button>
+                    <button class="button bg-blue" type="submit" placeholder="Text input">Log in</button>
                 </div>
                 <div class="login-element">
                     <article>
 
-                        <router-link :to="{name: 'register'}">
+                        <router-link :to="{ name: 'register' }">
                             Not a member yet? <b>Sign up</b>
                         </router-link>
                     </article>
@@ -42,9 +42,9 @@ const email = ref('');
 const password = ref('');
 
 const onSubmit = (async () => {
-    try{
-await     authStore.login(email.value, password.value);
-router.push({ name: 'home' })
+    try {
+        await authStore.login(email.value, password.value);
+        router.push({ name: 'home' })
 
     }
     catch (error) {
@@ -58,6 +58,7 @@ router.push({ name: 'home' })
 article {
     text-align: center;
 }
+
 .section {
     display: flex;
     flex-direction: column;
@@ -88,7 +89,7 @@ article {
 }
 
 .login-element {
-    
+
     font-size: 12px;
     text-align: left;
     width: 100%;

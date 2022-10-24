@@ -1,6 +1,6 @@
 <template>
   <NavBar/>
-  <section >
+  <section>
     <TaskCreator />
     <div v-for="task in taskStore.task">
         <Tasks :task="task"/>

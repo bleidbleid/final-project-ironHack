@@ -2,59 +2,75 @@
 :root {
   --yellow: #FFD75B;
   --red: #FF9074;
-  --green:#2B9274;
+  --green: #2B9274;
   --grey: #EFEFEF;
   --blackish: #272727;
   --whiteish: #F8F8F8;
+  --blue: #1A53A8;
+  --bluer: #103266;
+
 
 }
+
 .bg-yellow {
-    background-color: var(  --yellow);
-  }
-  
-  .bg-red {
-    background-color: var(  --red);
-  }
-  
-  .bg-green {
-    background-color: var(--green);
-  }
-  
-  .bg-white {
-    background-color: var( --whiteish);
-    color: var( --blackish);
-  }
-  
-  .bg-grey {
-    background-color: var(--grey);
-    color: var( --blackish);
-  }
+  background-color: var(--yellow);
+}
 
-  .bg-grey:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .bg-blackish {
-    background-color: var( --blackish);
-    color: var(--grey);
-  }
-  .bg-none {
-    background-color: transparent;
-    color: var(--blackish);
-  }
+.bg-blue {
+  background-color: var(--blue);
+  color: var(--whiteish);
+}
 
-  .bg-blackish:hover {
-    background-color: black;
-    color: white;
-  }
+.bg-blue:hover {
+  background-color: var(--bluer);
+}
 
-  .blackish {
-    color: var( --blackish);
-  }
-  .blackish:hover {
-    color: black;
-  }
-  .border-blackish {
-    border: solid 1px var( --blackish);
-  }
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-white {
+  background-color: var(--whiteish);
+  color: var(--blackish);
+}
+
+.bg-grey {
+  background-color: var(--grey);
+  color: var(--blackish);
+}
+
+.bg-grey:hover {
+  background-color: white;
+  color: black;
+}
+
+.bg-blackish {
+  background-color: var(--blackish);
+  color: var(--grey);
+}
+
+.bg-none {
+  background-color: transparent;
+  color: var(--blackish);
+}
+
+.bg-blackish:hover {
+  background-color: black;
+  color: white;
+}
+
+.blackish {
+  color: var(--blackish);
+}
+
+.blackish:hover {
+  color: black;
+}
+
+.border-blackish {
+  border: solid 1px var(--blackish);
+}

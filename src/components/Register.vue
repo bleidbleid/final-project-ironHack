@@ -2,7 +2,7 @@
     <section class="section">
         <div class="login-container is-4 bg-white">
             <article class="welcome">
-                <h2>Welcome to Ka0sn't</h2>
+                <h2>Welcome to <img src="/logoBlack.png" width="88"> </h2>
                 <p>A place where entropy does not exist</p>
             </article>
             <form @submit.prevent="onSubmit" class="login-content">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="login-button">
-                    <button class="button bg-blackish" type="submit" placeholder="Text input">Register</button>
+                    <button class="button bg-blue" type="submit" placeholder="Text input">Register</button>
                 </div>
                 <div class="login-element">
                     <article>
