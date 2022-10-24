@@ -66,7 +66,7 @@ article {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-image: url(../assets/background.jpg);
+    background-image: url(/background.jpg);
 }
 
 .login-container {
