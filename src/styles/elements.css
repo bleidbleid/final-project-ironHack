@@ -16,9 +16,11 @@ body {
     line-height: 1.15;
     transition: border-color 0.25s;
     margin: 0;
-    border: none;
-  
-    
+    border: none;    
+  }
+
+  .select option {
+    background-color: var(--blackish);
   }
   
   button {
@@ -32,7 +34,6 @@ body {
     /* border-radius: 50px; */
     /* font-family: 'Oswald', sans-serif; */
     font-family: 'Space Grotesk', sans-serif;
-
     /* text-transform: uppercase; */
     font-weight: 600;
     font-size: 1rem;

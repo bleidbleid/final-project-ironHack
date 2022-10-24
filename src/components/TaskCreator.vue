@@ -1,7 +1,7 @@
 <template>
     <div class="task-component item1 bg-white">
         <h2>New task</h2>
-        <form class="task-container ">
+        <form class="task-container">
             <div class="task-element">
                 Title *
                 <input v-model="title" class="text task-input bg-grey" placeholder="Title">
@@ -13,14 +13,14 @@
                     placeholder="Description of what I have to do">
                     </textarea>
             </div>
-            <!-- <div class="task-element">
+            <div class="task-element">
                 Priority
                 <select v-model="priority" multiple class="bg-none">
                     <option @click="myPriority" class="priority bg-grey" value="1">Low</option>
                     <option @click="myPriority" class="priority bg-grey" value="2">Medium</option>
                     <option @click="myPriority" class="priority bg-grey" value="3">High</option>
                 </select>
-            </div> -->
+            </div>
 
             <div class="task-button">
                 <button @click="onSubmit" class="button bg-blue">Create</button>
@@ -40,10 +40,10 @@ const description = ref('');
 const title = ref('');
 const priority = ref();
 
-// const myPriority = () => {
-//     priority = value;
-//     console.log(value);
-// }
+const myPriority = (async (e) => {
+    priority = priority.value;
+    console.log(value.value);
+})
 
 
 const onSubmit = (async (e) => {
