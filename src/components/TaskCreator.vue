@@ -6,13 +6,13 @@
                 <span class="font-sg">
                     Title *
                 </span>
-                
+
                 <input v-model="title" class="text task-input bg-grey" placeholder="Title">
             </div>
 
             <div class="task-element">
                 <span class="font-sg">
-                Description *
+                    Description *
                 </span>
 
                 <textarea v-model="description" class="textarea task-input bg-grey"
@@ -29,11 +29,12 @@
                     <option @click="myPriority" class="priority bg-grey" value="3">High</option>
                 </select> -->
                 <article class="flex space-around mt-5">
-                    <button class="priority bg-grey weight-regular font-lora low">Low</button>
-                    <button class="priority bg-grey weight-regular font-lora medium">Medium</button>
-                    <button class="priority bg-grey weight-regular font-lora high">High</button>
-
-
+                    <button class="priority bg-grey weight-regular font-lora" value="1"
+                        @click="myPriority(1), !low"> Low </button>
+                    <button class="priority bg-grey weight-regular font-lora" value="2"
+                        @click="myPriority(2), !medium">Medium</button>
+                    <button class="priority bg-grey weight-regular font-lora" value="3"
+                        @click="myPriority(3), !high">High</button>
                 </article>
             </div>
 
@@ -49,27 +50,41 @@ import { ref } from 'vue';
 import { useTaskStore } from '../store/task'
 
 const taskStore = useTaskStore();
-// Al enviar el formulario hacer un push en el store de posts
-// Tenemos que crear un action que se encarque de hacer el push
+
 const description = ref('');
 const title = ref('');
-const priority = ref();
+const priority = ref(0);
+const low = ref(false);
+const medium = ref(false);
+const high = ref(false);
 
-const myPriority = (async (e) => {
-    priority = priority.value;
-    console.log(value.value);
+if (low == true) {
+    medium = false;
+    high = false;
+} else if (medium == true) {
+    low = false;
+    high = false;
+} else if (high == true) {
+    low = false;
+    medium = false;
+}
+
+
+
+const myPriority = (async (value) => {
+    priority.value = value;
+    console.log(priority.value);
+    return priority.value;
 })
-
 
 const onSubmit = (async (e) => {
     e.preventDefault()
-    // console.log('AQUIII', title.value)
-    // console.log('ALLAAAA', description.value)
     if (!title.value == '' && !description.value == '') {
-        await taskStore.addTask(title.value, description.value);
+        await taskStore.addTask(title.value, description.value, priority.value);
         await taskStore.getTasks();
         title.value = '';
         description.value = '';
+        priority.value = 0;
     }
 })
 </script>

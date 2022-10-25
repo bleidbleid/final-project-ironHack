@@ -114,6 +114,7 @@ const submitEdit = (async () => {
     font-size: 18px;
 }
 .card {
+
      position: relative;
      display: flex;
      flex-direction: column;
@@ -125,7 +126,7 @@ const submitEdit = (async () => {
      border-width: 1px;
      border-style: solid;
      background-color: white;
-     width: 100%;
+
 }
 
 .edit-element {

@@ -1,13 +1,11 @@
 <template>
   <NavBar class="sticky-0 z-index" />
   <section class="flex">
-    <div class="task-creator is-4 is-1-tablet">
+    <div class="task-creator is-4">
       <TaskCreator />
     </div>
-    <div class="taks-viewer is-8 is-2-tablet flex flex-wrap">
-      <div class="task-div" v-for="task in taskStore.task">
-        <Tasks :task="task" />
-      </div>
+    <div class="is-8 flex-wrap is-horitzontal">
+        <Tasks :task="task" class="task-div" v-for="task in taskStore.task"/>
     </div>
 
   </section>

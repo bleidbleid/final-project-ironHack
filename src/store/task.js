@@ -31,7 +31,7 @@ export const useTaskStore = defineStore("task", {
         },
        
         // ADD TASK
-        async addTask(title, description) {
+        async addTask(title, description, priority) {
             // console.log(useAuthStore().user.id)
             const addedTask = await supabase.from("task").insert([
                 {
@@ -39,6 +39,7 @@ export const useTaskStore = defineStore("task", {
                     title,
                     is_complete: true,
                     description,
+                    priority,
                 },
             ])
         },
