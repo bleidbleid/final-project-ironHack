@@ -1,5 +1,5 @@
 <template>
-     <div class="card is-3" :class="{ colorDone: !props.task.is_complete }">
+     <div class="card" :class="{ colorDone: !props.task.is_complete }">
 
           <div class="task-delete">
                <button @click="delTask()">
@@ -40,8 +40,8 @@
                     <div class="edit-element">
                          Description
                     </div>
-                    <input v-if="toEdit" v-model="newDescription" class="text task-input bg-grey"
-                         placeholder="New description">
+                    <textarea v-if="toEdit" v-model="newDescription" class="text task-input bg-grey" name="" id=""
+                         cols="25" rows="10" placeholder="New description"></textarea>
                </div>
 
                <div class="task-actions" v-if="props.task.is_complete">
@@ -69,11 +69,13 @@ const toEdit = ref(false);
 const newTitle = ref(props.task.title);
 const newDescription = ref(props.task.description);
 
+// delete task
 const delTask = (async () => {
      await taskStore.deleteTask(props.task.id);
      await taskStore.getTasks();
 })
 
+// mark a task as done
 const tascaFeta = (async (boolean, id) => {
      done.value = boolean;
      await taskStore.completeTask(props.task.id, boolean);
@@ -85,10 +87,11 @@ const colorDone = ({
      active: true,
 })
 
-
+//change the task to editable
 const allowEdit = () => {
      toEdit.value = true;
 }
+//send edit
 const submitEdit = (async () => {
      await taskStore.editTask(newTitle.value, newDescription.value, props.task.id);
      await taskStore.getTasks();
@@ -96,6 +99,11 @@ const submitEdit = (async () => {
 })
 </script>
 <style scoped>
+.bg-grey:hover {
+     background-color: var(--whiteish);
+     color: black;
+}
+
 .card {
      position: relative;
      display: flex;
@@ -108,6 +116,7 @@ const submitEdit = (async () => {
      border-width: 1px;
      border-style: solid;
      background-color: white;
+     width: 100%;
 }
 
 .edit-element {

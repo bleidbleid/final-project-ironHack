@@ -1,3 +1,8 @@
 .mt-16 {
     margin-top: 16px;
 }
+
+.font-sg {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+}

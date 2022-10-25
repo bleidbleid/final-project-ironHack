@@ -1,20 +1,29 @@
 <template>
-    <div class="task-component item1 bg-white">
+    <aside class="task-component item1 bg-white">
         <h2>New task</h2>
         <form class="task-container">
             <div class="task-element">
-                Title *
+                <span class="font-sg">
+                    Title *
+                </span>
+                
                 <input v-model="title" class="text task-input bg-grey" placeholder="Title">
             </div>
 
             <div class="task-element">
+                <span class="font-sg">
                 Description *
+
+                </span>
+
                 <textarea v-model="description" class="textarea task-input bg-grey"
                     placeholder="Description of what I have to do">
                     </textarea>
             </div>
             <div class="task-element">
-                Priority
+                <span class="font-sg">
+                    Priority
+                </span>
                 <select v-model="priority" multiple class="bg-none">
                     <option @click="myPriority" class="priority bg-grey" value="1">Low</option>
                     <option @click="myPriority" class="priority bg-grey" value="2">Medium</option>
@@ -26,7 +35,7 @@
                 <button @click="onSubmit" class="button bg-blue">Create</button>
             </div>
         </form>
-    </div>
+    </aside>
 
 </template>
 <script setup>
@@ -60,8 +69,10 @@ const onSubmit = (async (e) => {
 </script>
 <style scoped>
 .priority {
+    max-width: fit-content;
     padding: 6px 16px;
     margin-bottom: 4px;
+    font-size: 1rem;
 }
 
 .task-component {
@@ -73,23 +84,19 @@ const onSubmit = (async (e) => {
     border-color: rgba(0, 0, 0, 1);
     border-width: 1px;
     border-style: solid;
+    height: 80vh;
 }
 
 .task-container {
     display: flex;
     flex-direction: column;
     padding: 15px 36px 36px 36px;
-}
-
-.task-container {
-    display: flex;
-    flex-direction: column;
     width: 70%;
     gap: 16px;
 }
 
 .task-element {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     width: 100%;
     display: flex;

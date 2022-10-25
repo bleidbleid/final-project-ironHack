@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar bg-blue" role="navigation" aria-label="main navigation">
         <div class="navbar-start">
-            <a href="https://bulma.io">
+            <router-link :to="{ name: 'home' }">
                 <img src="/logo.png" width="88" >
-            </a>
+            </router-link>
         </div>
 
 

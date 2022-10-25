@@ -6,8 +6,8 @@
   --grey: #EFEFEF;
   --blackish: #272727;
   --whiteish: #F8F8F8;
-  --blue: #1A53A8;
-  --bluer: #103266;
+  --blue: #456990;
+  --bluer: #3C5B7C;
 
 
 }
@@ -42,6 +42,8 @@
   background-color: var(--grey);
   color: var(--blackish);
 }
+
+
 
 .bg-grey:hover {
   background-color: white;
