@@ -29,12 +29,12 @@
                     <option @click="myPriority" class="priority bg-grey" value="3">High</option>
                 </select> -->
                 <article class="flex space-around mt-5">
-                    <button class="priority bg-grey weight-regular font-lora" value="1"
-                        @click="myPriority(1), !low"> Low </button>
-                    <button class="priority bg-grey weight-regular font-lora" value="2"
-                        @click="myPriority(2), !medium">Medium</button>
-                    <button class="priority bg-grey weight-regular font-lora" value="3"
-                        @click="myPriority(3), !high">High</button>
+                    <button class="priority bg-grey weight-regular font-lora" :class="{bgGreen: priority == 1}" value="1"
+                        @click="myPriority(1)"> Low </button>
+                    <button class="priority bg-grey weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
+                        @click="myPriority(2)">Medium</button>
+                    <button class="priority bg-grey weight-regular font-lora" :class="{bgRed: priority == 3}" value="3"
+                        @click="myPriority(3)">High</button>
                 </article>
             </div>
 
@@ -89,6 +89,17 @@ const onSubmit = (async (e) => {
 })
 </script>
 <style scoped>
+
+.bgYellow {
+  background-color: var(--yellow);
+}
+.bgGreen {
+  background-color: var(--green);
+}
+
+.bgRed {
+  background-color: var(--red);
+}
 .priority {
     max-width: fit-content;
     padding: 6px 16px;

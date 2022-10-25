@@ -1,5 +1,5 @@
 <template>
-     <div class="card" :class="{ colorDone: !props.task.is_complete }">
+     <div class="card" :class="{ colorDone: !props.task.is_complete }, { bgRed: props.task.priority == 3}, { bgGreen: props.task.priority == 1}, { bgYellow: props.task.priority == 2}">
 
           <div class="task-delete">
                <button @click="delTask()">
@@ -69,6 +69,9 @@ const toEdit = ref(false);
 const newTitle = ref(props.task.title);
 const newDescription = ref(props.task.description);
 
+console.log(props.task.priority);
+
+
 // delete task
 const delTask = (async () => {
      await taskStore.deleteTask(props.task.id);
@@ -83,9 +86,6 @@ const tascaFeta = (async (boolean, id) => {
      console.log(id)
 })
 
-const colorDone = ({
-     active: true,
-})
 
 //change the task to editable
 const allowEdit = () => {
@@ -138,7 +138,16 @@ const submitEdit = (async () => {
 .colorDone {
      background-color: var(--grey);
 }
+.bgYellow {
+  background-color: var(--yellow);
+}
+.bgGreen {
+  background-color: var(--green);
+}
 
+.bgRed {
+  background-color: var(--red);
+}
 .textDone {
      text-decoration: line-through;
      /* font-weight: 400; */
