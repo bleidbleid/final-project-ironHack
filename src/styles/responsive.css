@@ -1,15 +1,22 @@
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
 
 .is-horitzontal {
     display: flex;
     flex-direction: row;
     width: 100%;
-  }
+}
 
-  .is-vertical {
+.is-vertical {
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
+}
 
 .is-1 {
     flex: none;
@@ -80,4 +87,30 @@
 .columns.is-gapless>.column {
     margin: 0;
     padding: 0 !important
+}
+
+
+
+@media screen and (max-width:1023px) {
+    .is-1-tablet {
+        width: 33% !important;
+    }
+
+    .is-2-tablet {
+        width: 66% !important;
+    }
+
+    .is-3-tablet {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .is-1-mobile {
+        width: 50% !important;
+    }
+
+    .is-2-mobile {
+        width: 100% !important;
+    }
 }

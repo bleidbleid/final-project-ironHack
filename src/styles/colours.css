@@ -7,18 +7,22 @@
   --blackish: #272727;
   --whiteish: #F8F8F8;
   --blue: #456990;
-  --bluer: #3C5B7C;
-
-
+  --bluer: #42658A;
 }
 
-.bg-yellow {
+.bg-yellow, .bgYellow {
   background-color: var(--yellow);
 }
 
 .bg-blue {
   background-color: var(--blue);
   color: var(--whiteish);
+}
+.blue {
+  color: var(--blue);
+}
+.blue:hover {
+  color: var(--bluer);
 }
 
 .bg-blue:hover {

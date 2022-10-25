@@ -1,5 +1,5 @@
 <template>
-    <aside class="task-component item1 bg-white">
+    <aside class="task-component sticky-100 item1 bg-white">
         <h2>New task</h2>
         <form class="task-container">
             <div class="task-element">
@@ -13,7 +13,6 @@
             <div class="task-element">
                 <span class="font-sg">
                 Description *
-
                 </span>
 
                 <textarea v-model="description" class="textarea task-input bg-grey"
@@ -24,11 +23,18 @@
                 <span class="font-sg">
                     Priority
                 </span>
-                <select v-model="priority" multiple class="bg-none">
+                <!-- <select v-model="priority" multiple class="bg-none">
                     <option @click="myPriority" class="priority bg-grey" value="1">Low</option>
                     <option @click="myPriority" class="priority bg-grey" value="2">Medium</option>
                     <option @click="myPriority" class="priority bg-grey" value="3">High</option>
-                </select>
+                </select> -->
+                <article class="flex space-around mt-5">
+                    <button class="priority bg-grey weight-regular font-lora low">Low</button>
+                    <button class="priority bg-grey weight-regular font-lora medium">Medium</button>
+                    <button class="priority bg-grey weight-regular font-lora high">High</button>
+
+
+                </article>
             </div>
 
             <div class="task-button">
@@ -80,17 +86,17 @@ const onSubmit = (async (e) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px 36px 36px 36px;
+    padding: 8px 20px 20px 20px;
     border-color: rgba(0, 0, 0, 1);
     border-width: 1px;
     border-style: solid;
-    height: 80vh;
+    height: 88vh;
 }
 
 .task-container {
     display: flex;
     flex-direction: column;
-    padding: 15px 36px 36px 36px;
+    /* padding: 15px 36px 36px 36px; */
     width: 70%;
     gap: 16px;
 }

@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar bg-blue" role="navigation" aria-label="main navigation">
+    <nav class="navbar bg-blue sticky-0" role="navigation" aria-label="main navigation">
         <div class="navbar-start">
             <router-link :to="{ name: 'home' }">
-                <img src="/logo.png" width="88" >
+                <img src="/logo.png" width="64" >
             </router-link>
         </div>
 
@@ -36,6 +36,7 @@ async function onClick() {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 5vh;
     padding: 20px 36px;
 }
 

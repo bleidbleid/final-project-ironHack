@@ -2,7 +2,46 @@
     margin-top: 16px;
 }
 
+.weight-regular {
+    font-weight: 400;
+}
+
+.font-lora {
+    font-family: 'Lora', serif;
+
+}
+
+.z-index {
+    z-index: +1;
+}
+
 .font-sg {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
+}
+
+.sticky-0 {
+    position: sticky;
+    top: 0px;
+}
+
+.sticky-100 {
+    position: sticky;
+    top: 78px;
+}
+
+.gap-6 {
+    gap: 6px;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.mt-5 {
+    margin-top: 5px;
 }

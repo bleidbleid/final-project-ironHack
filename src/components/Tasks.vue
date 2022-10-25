@@ -3,7 +3,7 @@
 
           <div class="task-delete">
                <button @click="delTask()">
-                    <span class="material-symbols-outlined blackish">
+                    <span class="material-symbols-outlined blue">
                          close
                     </span>
                </button>
@@ -12,12 +12,12 @@
           <div class="task-info">
                <div v-if="!toEdit" class="task-title">
                     <button v-if="!props.task.is_complete" @click="tascaFeta(true, props.task.id)">
-                         <span class="material-symbols-outlined blackish">
+                         <span class="material-symbols-outlined blue">
                               check_box
                          </span>
                     </button>
                     <button v-else @click="tascaFeta(false, props.task.id)">
-                         <span class="material-symbols-outlined blackish">
+                         <span class="material-symbols-outlined blue">
                               check_box_outline_blank
                          </span>
                     </button>
@@ -41,16 +41,16 @@
                          Description
                     </div>
                     <textarea v-if="toEdit" v-model="newDescription" class="text task-input bg-grey" name="" id=""
-                         cols="25" rows="10" placeholder="New description"></textarea>
+                          rows="10" placeholder="New description"></textarea>
                </div>
 
                <div class="task-actions" v-if="props.task.is_complete">
                     <button v-if="!toEdit" @click="allowEdit()">
-                         <span class="material-symbols-outlined blackish">
+                         <span class="material-symbols-outlined blue">
                               edit
                          </span>
                     </button>
-                    <button v-if="toEdit" @click="submitEdit()">
+                    <button v-if="toEdit" @click="submitEdit()" class="button bg-blue">
                          Apply changes
                     </button>
                </div>
@@ -104,6 +104,15 @@ const submitEdit = (async () => {
      color: black;
 }
 
+
+.task-button {
+    text-align: center;
+    align-self: center;
+    width: fit-content;
+    margin-top: 24px;
+    padding: 5px 23px;
+    font-size: 18px;
+}
 .card {
      position: relative;
      display: flex;
