@@ -23,17 +23,13 @@
                 <span class="font-sg">
                     Priority
                 </span>
-                <!-- <select v-model="priority" multiple class="bg-none">
-                    <option @click="myPriority" class="priority bg-grey" value="1">Low</option>
-                    <option @click="myPriority" class="priority bg-grey" value="2">Medium</option>
-                    <option @click="myPriority" class="priority bg-grey" value="3">High</option>
-                </select> -->
+                
                 <article class="flex space-around mt-5">
-                    <button class="priority bg-grey weight-regular font-lora" :class="{bgGreen: priority == 1}" value="1"
+                    <button class="priority bg-grey border-green weight-regular font-lora" :class="{bgGreen: priority == 1}" value="1"
                         @click="myPriority(1)"> Low </button>
-                    <button class="priority bg-grey weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
+                    <button class="priority bg-grey border-yellow weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
                         @click="myPriority(2)">Medium</button>
-                    <button class="priority bg-grey weight-regular font-lora" :class="{bgRed: priority == 3}" value="3"
+                    <button class="priority bg-grey border-red weight-regular font-lora" :class="{bgRed: priority == 3}" value="3"
                         @click="myPriority(3)">High</button>
                 </article>
             </div>
@@ -54,9 +50,9 @@ const taskStore = useTaskStore();
 const description = ref('');
 const title = ref('');
 const priority = ref(0);
-const low = ref(false);
-const medium = ref(false);
-const high = ref(false);
+let low = ref(false);
+let medium = ref(false);
+let high = ref(false);
 
 if (low == true) {
     medium = false;

@@ -1,9 +1,10 @@
 <template>
-     <div class="card" :class="{ colorDone: !props.task.is_complete }, { bgRed: props.task.priority == 3}, { bgGreen: props.task.priority == 1}, { bgYellow: props.task.priority == 2}">
+     <div class="card"
+          :class="{ bgRed: props.task.priority == 3 }, { bgGreen: props.task.priority == 1 && props.task.is_complete }, { bgYellow: props.task.priority == 2 && props.task.is_complete }, { colorDone: !props.task.is_complete }">
 
           <div class="task-delete">
                <button @click="delTask()">
-                    <span class="material-symbols-outlined blue">
+                    <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
                          close
                     </span>
                </button>
@@ -12,12 +13,12 @@
           <div class="task-info">
                <div v-if="!toEdit" class="task-title">
                     <button v-if="!props.task.is_complete" @click="tascaFeta(true, props.task.id)">
-                         <span class="material-symbols-outlined blue">
+                         <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
                               check_box
                          </span>
                     </button>
                     <button v-else @click="tascaFeta(false, props.task.id)">
-                         <span class="material-symbols-outlined blue">
+                         <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
                               check_box_outline_blank
                          </span>
                     </button>
@@ -25,7 +26,7 @@
 
                </div>
                <div v-if="toEdit">
-                    <div class="edit-element">
+                    <div class="edit-element font-sg">
                          Title
                     </div>
                     <input v-model="newTitle" class="text task-input bg-grey" placeholder="New title">
@@ -37,22 +38,45 @@
                     </div>
                </div>
                <div v-if="toEdit" class="mt-16">
-                    <div class="edit-element">
+                    <div class="edit-element font-sg">
                          Description
                     </div>
-                    <textarea v-if="toEdit" v-model="newDescription" class="text task-input bg-grey" name="" id=""
-                          rows="10" placeholder="New description"></textarea>
+                    <textarea  v-model="newDescription" class="text task-input bg-grey" name="" id=""
+                         rows="10" placeholder="New description"></textarea>
+                    
+                    
+               </div>
+
+               <div v-if="toEdit" class="mt-16">
+                    <div class="edit-element font-sg">
+                         Priority
+                    </div>
+                    <article class="flex space-around mt-5">
+                    <button class="priority bg-grey border-green weight-regular font-lora" :class="{bgGreen: priority == 1}" value="1"
+                        @click="myPriority(1)"> Low </button>
+                    <button class="priority bg-grey border-yellow weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
+                        @click="myPriority(2)">Medium</button>
+                    <button class="priority bg-grey border-red weight-regular font-lora" :class="{bgRed: priority == 3}" value="3"
+                        @click="myPriority(3)">High</button>
+                </article>
                </div>
 
                <div class="task-actions" v-if="props.task.is_complete">
                     <button v-if="!toEdit" @click="allowEdit()">
-                         <span class="material-symbols-outlined blue">
+                         <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
                               edit
                          </span>
                     </button>
-                    <button v-if="toEdit" @click="submitEdit()" class="button bg-blue">
-                         Apply changes
-                    </button>
+                    <div v-if="toEdit">
+                         <button @click="submitEdit()" class="button bg-blackish"
+                              :class="{ bgBlue: props.task.priority == 0 }">
+                              Apply
+                         </button>
+                         <button @click="toEdit = !toEdit" class="button blackish"
+                              :class="{ blue: props.task.priority == 0 }">
+                              Cancel
+                         </button>
+                    </div>
                </div>
           </div>
      </div>
@@ -71,6 +95,21 @@ const newDescription = ref(props.task.description);
 
 console.log(props.task.priority);
 
+const priority = ref(props.task.priority);
+// const low = ref(false);
+// const medium = ref(false);
+// const high = ref(false);
+
+// if (low == true) {
+//     medium = false;
+//     high = false;
+// } else if (medium == true) {
+//     low = false;
+//     high = false;
+// } else if (high == true) {
+//     low = false;
+//     medium = false;
+// }
 
 // delete task
 const delTask = (async () => {
@@ -99,6 +138,17 @@ const submitEdit = (async () => {
 })
 </script>
 <style scoped>
+
+.bgYellow {
+  background-color: var(--yellow);
+}
+.bgGreen {
+  background-color: var(--green);
+}
+
+.bgRed {
+  background-color: var(--red);
+}
 .bg-grey:hover {
      background-color: var(--whiteish);
      color: black;
@@ -106,13 +156,14 @@ const submitEdit = (async () => {
 
 
 .task-button {
-    text-align: center;
-    align-self: center;
-    width: fit-content;
-    margin-top: 24px;
-    padding: 5px 23px;
-    font-size: 18px;
+     text-align: center;
+     align-self: center;
+     width: fit-content;
+     margin-top: 24px;
+     padding: 5px 23px;
+     font-size: 18px;
 }
+
 .card {
 
      position: relative;
@@ -138,16 +189,23 @@ const submitEdit = (async () => {
 .colorDone {
      background-color: var(--grey);
 }
+
 .bgYellow {
-  background-color: var(--yellow);
+     background-color: var(--yellow);
 }
+
 .bgGreen {
-  background-color: var(--green);
+     background-color: var(--green);
 }
 
 .bgRed {
-  background-color: var(--red);
+     background-color: var(--red);
 }
+
+.bgBlue {
+     background-color: var(--blue);
+}
+
 .textDone {
      text-decoration: line-through;
      /* font-weight: 400; */

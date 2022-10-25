@@ -5,7 +5,7 @@
       <TaskCreator />
     </div>
     <div class="is-8 flex-wrap is-horitzontal">
-        <Tasks :task="task" class="task-div" v-for="task in taskStore.task"/>
+        <Tasks :task="task" class=" task-div" v-for="task in taskStore.task"/>
     </div>
 
   </section>

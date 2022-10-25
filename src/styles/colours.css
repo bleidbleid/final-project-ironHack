@@ -2,7 +2,7 @@
 :root {
   --yellow: #FFD75B;
   --red: #FF9074;
-  --green: #2B9274;
+  --green: #91BF8F;
   --grey: #EFEFEF;
   --blackish: #272727;
   --whiteish: #F8F8F8;
@@ -13,8 +13,11 @@
 .bg-yellow, .bgYellow {
   background-color: var(--yellow);
 }
+.border-yellow {
+  border: solid 1px var(--yellow);
+}
 
-.bg-blue {
+.bg-blue, .bgBlue {
   background-color: var(--blue);
   color: var(--whiteish);
 }
@@ -32,9 +35,14 @@
 .bg-red {
   background-color: var(--red);
 }
-
+.border-red {
+  border: solid 1px var(--red);
+}
 .bg-green {
   background-color: var(--green);
+}
+.border-green {
+  border: solid 1px var(--green);
 }
 
 .bg-white {
