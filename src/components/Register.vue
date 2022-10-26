@@ -73,7 +73,6 @@ const onSubmit = (async () => {
 )
 </script>
 <style scoped>
-/* doesn't work */
 input:-webkit-autofill,
 input:-internal-autofill-previewed,
 input:-internal-autofill-selected,
@@ -89,6 +88,7 @@ input:-webkit-autofill:active{
 article {
     text-align: center;
 }
+
 .section {
     justify-content: center;
     align-items: center;
@@ -100,7 +100,10 @@ article {
 }
 
 .login-container {
-    width: 380px;
+    min-width: 230px;
+    margin: 32px;
+
+    max-width: 380px;
     padding: 24px;
     border-color: rgba(0, 0, 0, 1);
     border-width: 1px;
@@ -141,17 +144,5 @@ article {
 .bg-blackish:hover {
     background-color: black;
     color: white;
-}
-
-@media screen and (max-width:425px) {
-    .bg-white {
-        background-color: transparent;
-    }
-
-    .login-container {
-        width: 90%;
-        margin: 16px;
-        border-width: 0px;
-    }
 }
 </style>
