@@ -15,7 +15,7 @@ export const useTaskStore = defineStore("task", {
                 // .order("is_complete")
                 .order("id", { ascending: false })
             this.task = task
-            console.log(task)
+            // console.log(task)
             return this.task
         },
 
@@ -45,7 +45,7 @@ export const useTaskStore = defineStore("task", {
         },
          // MARK AS COMPLETED
          async completeTask(id, is_complete) {
-             console.log(is_complete)
+            //  console.log(is_complete)
             try {
                 const { data, error } = await supabase.from("task")
                     .update({ is_complete: is_complete })

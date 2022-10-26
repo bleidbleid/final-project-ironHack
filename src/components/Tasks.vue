@@ -98,8 +98,6 @@ const toEdit = ref(false);
 const newTitle = ref(props.task.title);
 const newDescription = ref(props.task.description);
 
-console.log(props.task.priority);
-
 const priority = ref(props.task.priority);
 
 const myPriority = (async (value) => {
@@ -162,12 +160,11 @@ const submitEdit = (async () => {
   color: var(--blue);
 }
 
-.containerGrid {
-display: f;
+/* .containerGrid {
   column-count: 4;
   column-gap: 10px;
   width: 100%;
-}
+} */
 .bgYellow {
   background-color: var(--yellow);
 }
@@ -202,7 +199,7 @@ display: f;
      align-items: center;
      gap: 12px;
      box-sizing: border-box;
-     width: 180px;
+     width: 100%;
      padding: 12px 16px;
      border-color: var(--blackish);
      border-width: 1px;

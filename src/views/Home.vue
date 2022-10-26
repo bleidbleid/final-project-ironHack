@@ -61,17 +61,26 @@ figcaption {
 
 .container {
   column-count: 4;
-  column-gap: 10px;
+  column-gap: 5px;
 }
 .task-div {
   width: 25%;
   height: fit-content;
 }
 
+
+
 @media screen and (max-width:1023px) {
-  .task-div {
-  width: 33%;
-  height: fit-content;
+  .container {
+  column-count: 2;
+  /* column-gap: 5px; */
+} 
+}
+
+@media screen and (max-width:768px) {
+  .container {
+  column-count: 1;
+  column-gap: 0px;
 }
 }
 </style>

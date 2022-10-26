@@ -30,7 +30,7 @@ onMounted(async () => {
   } catch (e) {
     console.log(e);
   }
-  console.log(authStore.user)
+  // console.log(authStore.user)
 });
 </script>
 
