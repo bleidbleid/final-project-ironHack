@@ -9,11 +9,8 @@
                 <Tasks :task="task" class=" task-div" v-for="task in taskStore.task"/>
 
     </div>
-
-   
-    <Footer />
-    
   </section>
+  <Footer />
 </template>
 <script setup>
 import NavBar from '../components/NavBar.vue';
@@ -30,6 +27,7 @@ taskStore.getTasks();
 </script>
 
 <style scoped>
+
 img {
   max-width: 100%;
   display: block;
@@ -62,7 +60,7 @@ figcaption {
 }
 
 .container {
-  column-count: 4;
+  column-count: 3;
   column-gap: 0px;
 }
 .task-div {
@@ -72,11 +70,30 @@ figcaption {
 
 
 
-@media screen and (max-width:1023px) {
+@media screen and (max-width:1024px) {
   .container {
   column-count: 2;
   /* column-gap: 5px; */
 } 
+}
+@media screen and (max-width:768px) {
+  .container {
+  column-count: 2;
+  /* column-gap: 5px; */
+} 
+.is-4, .is-8 {
+  width: 50%;
+}
+}
+
+@media screen and (max-width:597px) {
+ 
+  .task-creator {
+  display: none;
+}
+.is-4, .is-8 {
+  width: 100%;
+}
 }
 
 @media screen and (max-width:425px) {
@@ -85,4 +102,6 @@ figcaption {
   column-gap: 0px;
 }
 }
+
+
 </style>

@@ -9,6 +9,14 @@ body {
   grid-template-rows: 1fr auto;
   break-inside: avoid;
 }
+
+
+footer {
+    display: block;
+    padding: 4px 36px;
+}
+
+
   button,
   input,
   optgroup,

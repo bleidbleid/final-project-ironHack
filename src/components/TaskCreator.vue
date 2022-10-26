@@ -1,5 +1,5 @@
 <template>
-    <aside class="task-component sticky-100 item1 bg-white">
+    <aside class="task-component sticky-100  bg-white">
         <h2>New task</h2>
         <form class="task-container">
             <div class="task-element">
