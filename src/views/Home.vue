@@ -63,7 +63,7 @@ figcaption {
 
 .container {
   column-count: 4;
-  column-gap: 0yapx;
+  column-gap: 0px;
 }
 .task-div {
   width: 100%;
