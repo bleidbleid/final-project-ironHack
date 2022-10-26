@@ -1,7 +1,9 @@
 .mt-16 {
     margin-top: 16px;
 }
-
+.paddingb-16, .paddingb16 {
+    padding-bottom: 16px;
+}
 .weight-regular {
     font-weight: 400;
 }

@@ -49,7 +49,7 @@
                     
                </div>
 
-               <div v-if="toEdit" class="mt-16">
+               <div v-if="toEdit" class="mt-16 mb-16">
                     <div class="edit-element font-sg">
                          Priority
                     </div>
@@ -63,7 +63,7 @@
                 </article>
                </div>
 
-               <div class="task-actions" v-if="props.task.is_complete">
+               <div class="task-actions mt-16" v-if="props.task.is_complete">
                     <button v-if="!toEdit" @click="allowEdit()">
                          <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
                               edit
@@ -152,13 +152,18 @@ const allowEdit = () => {
 }
 //send edit
 const submitEdit = (async () => {
-     await taskStore.editTask(newTitle.value, newDescription.value, props.task.id, priority.value);
+     await taskStore.editTask(newTitle.value, newDescription.value, props.task.id,priority.value);
      await taskStore.getTasks();
      toEdit.value = false;
 })
 </script>
 <style scoped>
+.blue {
+  color: var(--blue);
+}
+
 .containerGrid {
+display: f;
   column-count: 4;
   column-gap: 10px;
   width: 100%;
@@ -197,8 +202,8 @@ const submitEdit = (async () => {
      align-items: center;
      gap: 12px;
      box-sizing: border-box;
-     width:180px;
-     padding: 12px 16px 32px;
+     width: 180px;
+     padding: 12px 16px;
      border-color: var(--blackish);
      border-width: 1px;
      border-style: solid;

@@ -8,7 +8,7 @@
   --whiteish: #F8F8F8;
   --blue: #456990;
   --bluer: #42658A;
-  --trans: rgba(255,255,255,0.4)
+  --trans: rgba(239,239,239,0.5)
 }
 
 .bg-yellow, .bgYellow {
@@ -51,19 +51,19 @@
   color: var(--blackish);
 }
 
-.bg-grey {
+.bg-grey, .bgGrey {
   background-color: var(--grey);
   color: var(--blackish);
 }
 
 
 
-.bg-grey:hover {
+.bg-grey:hover, .bgGrey:hover {
   background-color: white;
   color: black;
 }
 
-.bg-blackish {
+.bg-blackish, .bgBlackish {
   background-color: var(--blackish);
   color: var(--grey);
 }
