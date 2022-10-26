@@ -15,9 +15,8 @@
                     Description *
                 </span>
 
-                <textarea v-model="description" class="textarea task-input bg-grey"
-                    placeholder="Description of what I have to do">
-                    </textarea>
+                <textarea  v-model="description" class="text task-input bg-grey autoExpand" name="" id="" rows="3"
+                data-min-rows="3" placeholder="New description"></textarea>
             </div>
             <div class="task-element">
                 <span class="font-sg">
@@ -50,22 +49,6 @@ const taskStore = useTaskStore();
 const description = ref('');
 const title = ref('');
 const priority = ref(0);
-let low = ref(false);
-let medium = ref(false);
-let high = ref(false);
-
-if (low == true) {
-    medium = false;
-    high = false;
-} else if (medium == true) {
-    low = false;
-    high = false;
-} else if (high == true) {
-    low = false;
-    medium = false;
-}
-
-
 
 const myPriority = (async (value) => {
     priority.value = value;
@@ -83,9 +66,42 @@ const onSubmit = (async (e) => {
         priority.value = 0;
     }
 })
+
+
+function getScrollHeight(elm){
+  var savedValue = elm.value
+  elm.value = ''
+  elm._baseScrollHeight = elm.scrollHeight
+  elm.value = savedValue
+}
+
+function onExpandableTextareaInput({ target:elm }){
+  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+  if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+  
+  var minRows = elm.getAttribute('data-min-rows')|0, rows;
+  !elm._baseScrollHeight && getScrollHeight(elm)
+
+  elm.rows = minRows
+  console.log('minrows',minRows)
+
+  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+  elm.rows = minRows + rows
+  console.log('elm.rows', elm.rows)
+  console.log('rows',rows)
+
+
+}
+
+
+// global delegated event listener
+document.addEventListener('input', onExpandableTextareaInput)
+
 </script>
 <style scoped>
-
+textarea {
+    height: auto !important;
+}
 .bgYellow {
   background-color: var(--yellow);
 }

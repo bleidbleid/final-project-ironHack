@@ -85,6 +85,6 @@
   color: black;
 }
 
-.border-blackish {
+.border-blackish, .borderBlackish {
   border: solid 1px var(--blackish);
 }

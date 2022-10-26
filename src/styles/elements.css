@@ -3,6 +3,13 @@ body {
     margin: 0px;
   }
   
+  figure {
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
   
   button,
   input,
@@ -43,6 +50,7 @@ body {
   
   textarea {
     overflow: auto;
+    resize: vertical;
   }
   
   input [type=text] {

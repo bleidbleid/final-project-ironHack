@@ -1,6 +1,8 @@
 <template>
+     <div class="container">
+     <figure>
      <div class="card"
-          :class="{ bgRed: props.task.priority == 3 }, { bgGreen: props.task.priority == 1 && props.task.is_complete }, { bgYellow: props.task.priority == 2 && props.task.is_complete }, { colorDone: !props.task.is_complete }">
+          :class="{ bgRed: props.task.priority == 3 && props.task.is_complete}, { bgGreen: props.task.priority == 1 && props.task.is_complete }, { bgYellow: props.task.priority == 2 && props.task.is_complete }, { colorDone: !props.task.is_complete }">
 
           <div class="task-delete">
                <button @click="delTask()">
@@ -41,8 +43,8 @@
                     <div class="edit-element font-sg">
                          Description
                     </div>
-                    <textarea  v-model="newDescription" class="text task-input bg-grey" name="" id=""
-                         rows="10" placeholder="New description"></textarea>
+                    <textarea  v-model="newDescription" class="text task-input bg-grey autoExpand" name="" id=""
+                    data-min-rows="3" placeholder="New description"></textarea>
                     
                     
                </div>
@@ -52,7 +54,7 @@
                          Priority
                     </div>
                     <article class="flex space-around mt-5">
-                    <button class="priority bg-grey border-green weight-regular font-lora" :class="{bgGreen: priority == 1}" value="1"
+                    <button class="priority bg-grey border-green weight-regular font-lora" :class="{bgGreen: priority == 1, borderBlackish: priority == 1}" value="1"
                         @click="myPriority(1)"> Low </button>
                     <button class="priority bg-grey border-yellow weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
                         @click="myPriority(2)">Medium</button>
@@ -80,6 +82,9 @@
                </div>
           </div>
      </div>
+</figure>
+</div>
+
 
 </template>
 <script setup>
@@ -96,20 +101,12 @@ const newDescription = ref(props.task.description);
 console.log(props.task.priority);
 
 const priority = ref(props.task.priority);
-// const low = ref(false);
-// const medium = ref(false);
-// const high = ref(false);
 
-// if (low == true) {
-//     medium = false;
-//     high = false;
-// } else if (medium == true) {
-//     low = false;
-//     high = false;
-// } else if (high == true) {
-//     low = false;
-//     medium = false;
-// }
+const myPriority = (async (value) => {
+    priority.value = value;
+    console.log(priority.value);
+    return priority.value;
+})
 
 // delete task
 const delTask = (async () => {
@@ -125,6 +122,28 @@ const tascaFeta = (async (boolean, id) => {
      console.log(id)
 })
 
+function getScrollHeight(elm){
+  var savedValue = elm.value
+  elm.value = ''
+  elm._baseScrollHeight = elm.scrollHeight
+  elm.value = savedValue
+}
+
+function onExpandableTextareaInput({ target:elm }){
+  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+  if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+  
+  var minRows = elm.getAttribute('data-min-rows')|0, rows;
+  !elm._baseScrollHeight && getScrollHeight(elm)
+
+  elm.rows = minRows
+  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+  elm.rows = minRows + rows
+}
+
+
+// global delegated event listener
+document.addEventListener('input', onExpandableTextareaInput)
 
 //change the task to editable
 const allowEdit = () => {
@@ -139,6 +158,36 @@ const submitEdit = (async () => {
 </script>
 <style scoped>
 
+figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+
+figure > img {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+figure a {
+  color: black;
+  text-decoration: none;
+}
+
+figcaption {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: rgba(255,255,255,.5);
+  padding: .2em .5em;
+  justify-self: start;
+}
+
+.container {
+  column-count: 4;
+  column-gap: 10px;
+}
 .bgYellow {
   background-color: var(--yellow);
 }
@@ -154,7 +203,9 @@ const submitEdit = (async () => {
      color: black;
 }
 
-
+.task-input {
+     width: 100%;
+}
 .task-button {
      text-align: center;
      align-self: center;
@@ -165,18 +216,20 @@ const submitEdit = (async () => {
 }
 
 .card {
-
      position: relative;
      display: flex;
      flex-direction: column;
      align-items: center;
      gap: 12px;
      box-sizing: border-box;
-     padding: 12px 16px 32px 16px;
+     padding: 12px 16px 32px;
      border-color: var(--blackish);
      border-width: 1px;
      border-style: solid;
      background-color: white;
+}
+.task-delete > button, .task-title > button {
+     padding: 0px;
 
 }
 
