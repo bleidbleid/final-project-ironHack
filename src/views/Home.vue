@@ -11,7 +11,7 @@
     </div>
 
    
-
+    <Footer />
     
   </section>
 </template>
@@ -19,6 +19,8 @@
 import NavBar from '../components/NavBar.vue';
 import TaskCreator from '../components/TaskCreator.vue';
 import Tasks from '../components/Tasks.vue';
+import Footer from '../components/Footer.vue';
+
 import { useTaskStore } from '../store/task';
 const taskStore = useTaskStore();
 
@@ -61,10 +63,10 @@ figcaption {
 
 .container {
   column-count: 4;
-  column-gap: 5px;
+  column-gap: 0yapx;
 }
 .task-div {
-  width: 25%;
+  width: 100%;
   height: fit-content;
 }
 
@@ -77,7 +79,7 @@ figcaption {
 } 
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:425px) {
   .container {
   column-count: 1;
   column-gap: 0px;

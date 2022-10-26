@@ -160,11 +160,6 @@ const submitEdit = (async () => {
   color: var(--blue);
 }
 
-/* .containerGrid {
-  column-count: 4;
-  column-gap: 10px;
-  width: 100%;
-} */
 .bgYellow {
   background-color: var(--yellow);
 }
