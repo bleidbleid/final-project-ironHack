@@ -1,5 +1,5 @@
 <template>
-     <div class="container">
+     <div class="containerGrid">
      <figure>
      <div class="card"
           :class="{ bgRed: props.task.priority == 3 && props.task.is_complete}, { bgGreen: props.task.priority == 1 && props.task.is_complete }, { bgYellow: props.task.priority == 2 && props.task.is_complete }, { colorDone: !props.task.is_complete }">
@@ -31,7 +31,7 @@
                     <div class="edit-element font-sg">
                          Title
                     </div>
-                    <input v-model="newTitle" class="text task-input bg-grey" placeholder="New title">
+                    <input v-model="newTitle" class="text task-input bg-trans" placeholder="New title">
                </div>
 
                <div v-if="!toEdit">
@@ -43,7 +43,7 @@
                     <div class="edit-element font-sg">
                          Description
                     </div>
-                    <textarea  v-model="newDescription" class="text task-input bg-grey autoExpand" name="" id=""
+                    <textarea  v-model="newDescription" class="text task-input bg-trans autoExpand" name="" id=""
                     data-min-rows="3" placeholder="New description"></textarea>
                     
                     
@@ -54,11 +54,11 @@
                          Priority
                     </div>
                     <article class="flex space-around mt-5">
-                    <button class="priority bg-grey border-green weight-regular font-lora" :class="{bgGreen: priority == 1, borderBlackish: priority == 1}" value="1"
+                    <button class="priority bg-trans weight-regular font-lora" :class="{bgGreen: priority == 1, borderBlackish: priority == 1}" value="1"
                         @click="myPriority(1)"> Low </button>
-                    <button class="priority bg-grey border-yellow weight-regular font-lora" :class="{bgYellow: priority == 2}" value="2"
+                    <button class="priority bg-trans weight-regular font-lora" :class="{bgYellow: priority == 2, borderBlackish: priority == 2}" value="2"
                         @click="myPriority(2)">Medium</button>
-                    <button class="priority bg-grey border-red weight-regular font-lora" :class="{bgRed: priority == 3}" value="3"
+                    <button class="priority bg-trans weight-regular font-lora" :class="{bgRed: priority == 3, borderBlackish: priority == 3}" value="3"
                         @click="myPriority(3)">High</button>
                 </article>
                </div>
@@ -112,6 +112,7 @@ const myPriority = (async (value) => {
 const delTask = (async () => {
      await taskStore.deleteTask(props.task.id);
      await taskStore.getTasks();
+     toEdit.value = false;
 })
 
 // mark a task as done
@@ -151,42 +152,16 @@ const allowEdit = () => {
 }
 //send edit
 const submitEdit = (async () => {
-     await taskStore.editTask(newTitle.value, newDescription.value, props.task.id);
+     await taskStore.editTask(newTitle.value, newDescription.value, props.task.id, priority.value);
      await taskStore.getTasks();
      toEdit.value = false;
 })
 </script>
 <style scoped>
-
-figure {
-  margin: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  margin-bottom: 10px;
-  break-inside: avoid;
-}
-
-figure > img {
-  grid-row: 1 / -1;
-  grid-column: 1;
-}
-
-figure a {
-  color: black;
-  text-decoration: none;
-}
-
-figcaption {
-  grid-row: 2;
-  grid-column: 1;
-  background-color: rgba(255,255,255,.5);
-  padding: .2em .5em;
-  justify-self: start;
-}
-
-.container {
+.containerGrid {
   column-count: 4;
   column-gap: 10px;
+  width: 100%;
 }
 .bgYellow {
   background-color: var(--yellow);
@@ -222,6 +197,7 @@ figcaption {
      align-items: center;
      gap: 12px;
      box-sizing: border-box;
+     width:180px;
      padding: 12px 16px 32px;
      border-color: var(--blackish);
      border-width: 1px;

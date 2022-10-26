@@ -8,6 +8,7 @@
   --whiteish: #F8F8F8;
   --blue: #456990;
   --bluer: #42658A;
+  --trans: rgba(255,255,255,0.4)
 }
 
 .bg-yellow, .bgYellow {
@@ -87,4 +88,14 @@
 
 .border-blackish, .borderBlackish {
   border: solid 1px var(--blackish);
+}
+
+.bg-trans {
+  background-color: var(--trans) ;
+  color: var(--blackish);
+}
+
+.bg-trans:hover {
+  background-color: var(--whiteish) ;
+  color: var(--blackish);
 }

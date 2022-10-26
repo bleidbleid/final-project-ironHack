@@ -20,10 +20,10 @@ export const useTaskStore = defineStore("task", {
         },
 
         // EDIT TASK
-        async editTask(title, description, id) {
+        async editTask(title, description, id, priority) {
             try {
                 const { data, error } = await supabase.from("task")
-                    .update({ title: title, description: description })
+                    .update({ title: title, description: description ,priority: priority})
                     .match({ id: id })
             } catch (error) {
                 console.log("this is my error", error)
