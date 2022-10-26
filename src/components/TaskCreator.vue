@@ -83,12 +83,12 @@ function onExpandableTextareaInput({ target:elm }){
   !elm._baseScrollHeight && getScrollHeight(elm)
 
   elm.rows = minRows
-  console.log('minrows',minRows)
+//   console.log('minrows',minRows)
 
   rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
   elm.rows = minRows + rows
-  console.log('elm.rows', elm.rows)
-  console.log('rows',rows)
+//   console.log('elm.rows', elm.rows)
+//   console.log('rows',rows)
 
 
 }
@@ -99,6 +99,9 @@ document.addEventListener('input', onExpandableTextareaInput)
 
 </script>
 <style scoped>
+.autoExpand{
+    max-height: 250px;
+}
 textarea {
     height: auto !important;
 }

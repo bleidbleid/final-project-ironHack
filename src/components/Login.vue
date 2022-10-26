@@ -55,26 +55,35 @@ const onSubmit = (async () => {
 })
 </script>
 <style scoped>
+input:-webkit-autofill,
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px var(--grey) inset !important;
+    -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
+    -webkit-text-fill-color: var(--blackish) !important;
+
+}
+
 article {
     text-align: center;
 }
 
 .section {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     background-image: url(/background.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 86px;
+    width: 380px;
+    padding: 24px;
     border-color: rgba(0, 0, 0, 1);
     border-width: 1px;
     border-style: solid;
@@ -83,13 +92,12 @@ article {
 .login-content {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     gap: 16px;
 
 }
 
 .login-element {
-
     font-size: 12px;
     text-align: left;
     width: 100%;
@@ -97,10 +105,9 @@ article {
 
 .login-input {
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 53px;
     margin-top: 5px;
-    padding: 0px 12px;
 }
 
 
@@ -116,5 +123,17 @@ article {
 .bg-blackish:hover {
     background-color: black;
     color: white;
+}
+
+@media screen and (max-width:425px) {
+    .bg-white {
+        background-color: transparent;
+    }
+
+    .login-container {
+        width: 90%;
+        margin: 16px;
+        border-width: 0px;
+    }
 }
 </style>

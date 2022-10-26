@@ -188,13 +188,13 @@ const submitEdit = (async () => {
 }
 
 .card {
-     position: relative;
+     /* position: relative;
      display: flex;
      flex-direction: column;
-     align-items: center;
+     align-items: center; */
      gap: 12px;
      box-sizing: border-box;
-     width: 100%;
+     /* width: 100%; */
      padding: 12px 16px;
      border-color: var(--blackish);
      border-width: 1px;
