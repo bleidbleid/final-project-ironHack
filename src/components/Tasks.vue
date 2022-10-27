@@ -10,6 +10,8 @@
                          close
                     </span>
                </button>
+               <p class="date">{{date}}</p>
+
           </div>
 
           <div class="task-info">
@@ -99,6 +101,7 @@ const newTitle = ref(props.task.title);
 const newDescription = ref(props.task.description);
 
 const priority = ref(props.task.priority);
+const date = ref(props.task.created_at.slice(0, 10));
 
 const myPriority = (async (value) => {
      if (priority.value == value) {
@@ -126,6 +129,7 @@ const tascaFeta = (async (boolean, id) => {
      console.log(id)
 })
 
+// to expand text area
 function getScrollHeight(elm){
   var savedValue = elm.value
   elm.value = ''
@@ -145,7 +149,6 @@ function onExpandableTextareaInput({ target:elm }){
   elm.rows = minRows + rows
 }
 
-
 // global delegated event listener
 document.addEventListener('input', onExpandableTextareaInput)
 
@@ -161,6 +164,9 @@ const submitEdit = (async () => {
 })
 </script>
 <style scoped>
+.date {
+     font-size: 12px;
+}
 .close {
  font-weight: 900;
 }
@@ -247,7 +253,7 @@ const submitEdit = (async () => {
 
 .task-delete {
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      width: 100%;
      justify-content: flex-end;
      align-items: flex-end;
