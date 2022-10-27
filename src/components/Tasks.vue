@@ -130,7 +130,6 @@ const tascaFeta = (async (boolean, id) => {
      done.value = boolean;
      await taskStore.completeTask(props.task.id, boolean);
      await taskStore.getTasks();
-     console.log(id)
 })
 
 // to expand text area

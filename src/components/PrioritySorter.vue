@@ -1,5 +1,5 @@
 <template>
-    <div class="center border-blackish width-90 padding-20 bg-realwhite">
+    <div class="center width-90 padding-20 bg-realwhite">
         <div class="center width-100 bgGrey  flex is-horitzontal space-between prioContainer" >
             <button class="fs-14 bg-blackish  width-50" :class="{ bgGrey: !isActive }" @click="dater"> by date</button>
            <button class="fs-14 width-50  bg-blackish" :class="{bgGrey: isActive }" @click="priori">by priority</button>
@@ -31,6 +31,11 @@ const emits = defineEmits(['prior', 'date'])
 } 
 button {
     display: inline-block;
+}
+
+.bg-realwhite {
+  background-color: white;
+  color: var(--blackish);
 }
 
 </style>

@@ -97,6 +97,9 @@
 .border-blackish, .borderBlackish {
   border: solid 0.5px var(--blackish);
 }
+.borderbottom-blackish, .borderBlackish {
+  border-bottom: solid 0.5px var(--blackish);
+}
 
 .bg-trans {
   background-color: var(--trans) ;

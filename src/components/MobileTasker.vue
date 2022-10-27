@@ -1,5 +1,5 @@
 <template>
-    <div class="center">
+    <div class="center mobile bg-realwhite borderbottom-blackish">
         <button class="width-100 center block fontsize-24" @click="open = !open">
             NEW TASK
             <span v-if="!open" class="material-symbols-outlined">
@@ -11,7 +11,7 @@
         </button>
 
         <div v-if="open">
-            <aside class="task-component bg-white">
+            <aside class="task-component bg-realwhite">
                 <form class="task-container">
                     <div class="task-element mt-24">
                         <span class="font-sg">
@@ -57,11 +57,64 @@
 <script setup>
 import { ref } from 'vue';
 import PrioritySorter from './PrioritySorter.vue';
+import { useTaskStore } from '../store/task'
+
+const taskStore = useTaskStore();
+
+const description = ref('');
+const title = ref('');
+const priority = ref(0);
+const myPriority = (async (value) => {
+    priority.value = value;
+    // console.log(priority.value);
+    return priority.value;
+})
+
+const onSubmit = (async (e) => {
+    e.preventDefault()
+    if (!title.value == '' && !description.value == '') {
+        await taskStore.addTask(title.value, description.value, priority.value);
+        await taskStore.getTasks();
+        emits('create')
+        title.value = '';
+        description.value = '';
+        priority.value = 0;
+    }
+})
+
+
+function getScrollHeight(elm){
+  let savedValue = elm.value
+  elm.value = ''
+  elm._baseScrollHeight = elm.scrollHeight
+  elm.value = savedValue
+}
+
+function onExpandableTextareaInput({ target:elm }){
+  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+  if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+  
+  let minRows = elm.getAttribute('data-min-rows')|0, rows;
+  !elm._baseScrollHeight && getScrollHeight(elm)
+
+  elm.rows = minRows
+//   console.log('minrows',minRows)
+
+  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+  elm.rows = minRows + rows
+//   console.log('elm.rows', elm.rows)
+//   console.log('rows',rows)
+
+
+}
 const open = ref(false);
 const emits = defineEmits(['prior', 'date']);
 
 </script>
 <style scoped>
+.mobile {
+  display: none;
+}
 .width-100 {
     width: 93% !important;
 }
@@ -140,4 +193,10 @@ textarea {
     padding: 5px 23px;
     font-size: 18px;
 }
+
+@media screen and (max-width:597px) {
+
+.mobile {
+  display: block;
+}}
 </style>
