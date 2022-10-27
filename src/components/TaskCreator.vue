@@ -16,7 +16,7 @@
                 </span>
 
                 <textarea  v-model="description" class="text task-input bg-grey autoExpand" name="" id="" rows="3"
-                data-min-rows="3" placeholder="New description"></textarea>
+                data-min-rows="3" @input="onExpandableTextareaInput" placeholder="New description"></textarea>
             </div>
             <div class="task-element">
                 <span class="font-sg">
@@ -49,7 +49,7 @@ const taskStore = useTaskStore();
 const description = ref('');
 const title = ref('');
 const priority = ref(0);
-
+const emits = defineEmits(['create']);
 const myPriority = (async (value) => {
     priority.value = value;
     console.log(priority.value);
@@ -60,7 +60,8 @@ const onSubmit = (async (e) => {
     e.preventDefault()
     if (!title.value == '' && !description.value == '') {
         await taskStore.addTask(title.value, description.value, priority.value);
-        await taskStore.getTasks();
+        // await taskStore.getTasks();
+        emits('create')
         title.value = '';
         description.value = '';
         priority.value = 0;
@@ -95,7 +96,7 @@ function onExpandableTextareaInput({ target:elm }){
 
 
 // global delegated event listener
-document.addEventListener('input', onExpandableTextareaInput)
+// document.addEventListener('input', onExpandableTextareaInput)
 
 </script>
 <style scoped>
@@ -129,7 +130,7 @@ textarea {
     align-items: center;
     padding: 8px 20px 20px 20px;
     border-color: rgba(0, 0, 0, 1);
-    border-width: 1px;
+    border-width: 0.5px;
     border-style: solid;
     height: 88vh;
 }

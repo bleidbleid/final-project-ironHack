@@ -3,11 +3,11 @@
   <MobileTasker class="mobile"/>
   <section class="flex">
     <div class="task-creator is-4">
-      <TaskCreator />
+      <TaskCreator @create="fetchTask" />
     </div>
     <div class="is-8 container">
         <!-- <Tasks :task="task" class=" task-div" v-for="task in taskStore.task"/> -->
-                <Tasks :task="task" class=" task-div" v-for="task in taskStore.task"/>
+                <Tasks @edit="fetchTask" :task="task" class=" task-div" v-for="task in taskStore.task"/>
 
     </div>
   </section>
@@ -21,9 +21,16 @@ import Footer from '../components/Footer.vue';
 
 import { useTaskStore } from '../store/task';
 import MobileTasker from '../components/MobileTasker.vue';
+import { onMounted } from 'vue';
 const taskStore = useTaskStore();
+const fetchTask = () => {
 
-taskStore.getTasks();
+  taskStore.getTasks();
+}
+
+onMounted (() => {
+  fetchTask();
+})
 
 
 </script>

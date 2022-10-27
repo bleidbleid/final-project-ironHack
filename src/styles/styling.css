@@ -5,7 +5,9 @@
 .mt-24 {
     margin-top: 24px;
 }
-
+.paddingr-0 {
+    padding-right: 0px;
+}
 .paddingb-16, .paddingb16 {
     padding-bottom: 16px;
 }
