@@ -18,6 +18,9 @@
                         Password
                     <!-- </label> -->
                     <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
+                    <p v-show="passwordNotMatch" class="help is-danger">Passwords do not match!</p>
+                    <p v-show="passwordError" class="help is-danger">The password must be at least 6 characters long.
+                    </p>
                 </div>
                 <div class="login-element">
                     <!-- <label> -->
@@ -25,6 +28,8 @@
                     <!-- </label> -->
                     <input v-model="confirmPassword" id="confirmPassword" class="login-input bg-grey" type="password"
                         placeholder="************" />
+                        <p v-show="passwordNotMatch" class="help is-danger">Passwords do not match!</p>
+
                 </div>
 
                 <div class="login-button">
@@ -55,24 +60,37 @@ const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
 // const confirmationAlert = ref('Please, confirm your email adress')
+const passwordConfirm = ref('')
+
+const passwordNotMatch = ref(false)
+const passwordError = ref(false)
 
 const onSubmit = (async () => {
-    if (password.value === confirmPassword.value) {
-    try {
+    passwordNotMatch.value = false;
+    passwordError.value = false;
+    if(password.value === passwordConfirm.value && password.value.length > 5){
         await authStore.register(email.value, password.value);
-        
+        ConfirmationMessage.value = true;
+    }else if(password.value.length < 6){
+        passwordError.value = true;
     }
-    catch (error) {
-        console.log(error),
-        alert('Check your email for confirmation link')
-        router.push({ name: 'login' })
+    else if(password.value !== passwordConfirm.value){
+        passwordNotMatch.value = true;
     }
-} else {
-    alert('Passwords do not match')
-}}
+
+
+
+}
 )
 </script>
 <style scoped>
+
+.is-danger {
+    font-family: 'Space Grotesk', sans-serif;
+font-weight: 600;
+color: var(--reder);
+}
+
 input:-webkit-autofill,
 input:-internal-autofill-previewed,
 input:-internal-autofill-selected,

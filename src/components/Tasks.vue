@@ -101,9 +101,14 @@ const newDescription = ref(props.task.description);
 const priority = ref(props.task.priority);
 
 const myPriority = (async (value) => {
-    priority.value = value;
-    console.log(priority.value);
-    return priority.value;
+     if (priority.value == value) {
+          priority.value = 0
+     } else {
+
+          priority.value = value;
+          console.log(priority.value);
+          return priority.value;
+     }
 })
 
 // delete task

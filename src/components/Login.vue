@@ -6,11 +6,15 @@
                 <div class="login-element">
                     Email
                     <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
+
+
                 </div>
 
                 <div class="login-element">
                     Password
                     <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
+                    <p v-show="passwordError" class="help is-danger">Wrong email or password!</p>
+
                     <!-- Forgot your password? -->
                 </div>
 
@@ -40,27 +44,37 @@ const router = useRouter();
 const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
+const passwordError = ref(false)
+
 
 const onSubmit = (async () => {
+    passwordError.value = false;
+
     try {
         await authStore.login(email.value, password.value);
         router.push({ name: 'home' })
 
     }
     catch (error) {
-        console.log(error)
+        passwordError.value = true;
     }
 
     // Nos redirige al home
 })
 </script>
 <style scoped>
+.is-danger {
+    font-family: 'Space Grotesk', sans-serif;
+font-weight: 600;
+color: var(--reder);
+}
+
 input:-webkit-autofill,
 input:-internal-autofill-previewed,
 input:-internal-autofill-selected,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     box-shadow: 0 0 0 30px var(--grey) inset !important;
     -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
     -webkit-text-fill-color: var(--blackish) !important;
@@ -127,6 +141,4 @@ article {
     background-color: black;
     color: white;
 }
-
-
 </style>
