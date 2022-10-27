@@ -228,6 +228,7 @@ const emits = defineEmits(['edit'])
 .task-delete>button,
 .task-title>button {
      padding: 0px;
+     align-items: baseline;
 
 }
 
@@ -291,7 +292,6 @@ const emits = defineEmits(['edit'])
      font-size: 1.5rem;
      font-weight: 600;
      justify-content: left;
-     align-items: center;
      position: relative;
      width: 100%;
      text-transform: uppercase;
