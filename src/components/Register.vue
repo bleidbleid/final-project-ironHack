@@ -8,14 +8,14 @@
             <form @submit.prevent="onSubmit" class="login-content">
                 <div class="login-element">
                     <!-- <label> -->
-                        Email
+                    Email
                     <!-- </label> -->
                     <input v-model="email" class="login-input bg-grey" type="email" placeholder="email@email.com" />
                 </div>
 
                 <div class="login-element">
                     <!-- <label> -->
-                        Password
+                    Password
                     <!-- </label> -->
                     <input v-model="password" class="login-input bg-grey" type="password" placeholder="************" />
                     <p v-show="passwordNotMatch" class="help is-danger">Passwords do not match!</p>
@@ -24,11 +24,11 @@
                 </div>
                 <div class="login-element">
                     <!-- <label> -->
-                        Confirm password
+                    Confirm password
                     <!-- </label> -->
-                    <input v-model="confirmPassword" id="confirmPassword" class="login-input bg-grey" type="password"
-                        placeholder="************" />
-                        <p v-show="passwordNotMatch" class="help is-danger">Passwords do not match!</p>
+                    <input v-model="passwordConfirmation" id="confirmPassword" class="login-input bg-grey"
+                        type="password" placeholder="************" />
+                    <p v-show="passwordNotMatch" class="help is-danger">Passwords do not match!</p>
 
                 </div>
 
@@ -38,7 +38,7 @@
                 <div class="login-element">
                     <article>
 
-                        <router-link :to="{name: 'login'}">
+                        <router-link :to="{ name: 'login' }">
                             Already a member? <b>Log in</b>
                         </router-link>
                     </article>
@@ -60,43 +60,48 @@ const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
 // const confirmationAlert = ref('Please, confirm your email adress')
-const passwordConfirm = ref('')
+const passwordConfirmation = ref('')
 
 const passwordNotMatch = ref(false)
 const passwordError = ref(false)
 
 const onSubmit = (async () => {
-    passwordNotMatch.value = false;
-    passwordError.value = false;
-    if(password.value === passwordConfirm.value && password.value.length > 5){
-        await authStore.register(email.value, password.value);
-        ConfirmationMessage.value = true;
-    }else if(password.value.length < 6){
+    if (password.value === passwordConfirmation.value && password.value.length > 5) {
+        passwordError.value = false;
+        passwordNotMatch.value = false;
+
+            await authStore.register(email.value, password.value);
+        
+        alert(`Hello ${email.value}, please confirm your email.`)
+        router.push({
+            name: 'login'
+        })
+    } else if (password.value.length < 6){
         passwordError.value = true;
-    }
-    else if(password.value !== passwordConfirm.value){
+    } else if (password.value !== passwordConfirmation.value){
+        passwordError.value = false;
+
         passwordNotMatch.value = true;
     }
-
-
-
 }
-)
+);
+
+
+
 </script>
 <style scoped>
-
 .is-danger {
     font-family: 'Space Grotesk', sans-serif;
-font-weight: 600;
-color: var(--reder);
+    font-weight: 600;
+    color: var(--reder);
 }
 
 input:-webkit-autofill,
 input:-internal-autofill-previewed,
 input:-internal-autofill-selected,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     box-shadow: 0 0 0 30px var(--grey) inset !important;
     -webkit-box-shadow: 0 0 0 30px var(--grey) inset !important;
     -webkit-text-fill-color: var(--blackish) !important;

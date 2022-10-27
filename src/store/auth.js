@@ -10,28 +10,28 @@ export const useAuthStore = defineStore('auth', {
     user: undefined,
   }),
   actions: {
-    async register(email, password) {
+    async register (email, password) {
       const result = await supabase.auth.signUp({
         email,
         password
       });
-      if (error) throw error;
+      // if (error) throw error; 
       if (user) {
-        this.user = user;
-        console.log(this.user);
+      this.user = user;
+      // console.log(this.user); 
       }
     },
     async login(email, password) {
-      console.log(email, password)
+      // console.log(email, password)
       const response = await supabase.auth.signInWithPassword({
         email,
         password
       });
-      console.log(response)
+      // console.log(response)
       if (response.error) throw error;
       if (response.data.user) {
         this.user = response.data.user;
-        console.log(this.user);
+        // console.log(this.user);
       }
     },
     async logout() {
