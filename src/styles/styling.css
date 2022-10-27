@@ -1,6 +1,11 @@
 .mt-16 {
     margin-top: 16px;
 }
+
+.mt-24 {
+    margin-top: 24px;
+}
+
 .paddingb-16, .paddingb16 {
     padding-bottom: 16px;
 }
@@ -11,6 +16,12 @@
 .font-lora {
     font-family: 'Lora', serif;
 
+}
+.block {
+    display: block;
+}
+.center {
+    text-align: center;
 }
 
 .width-100 {

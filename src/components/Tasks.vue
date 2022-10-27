@@ -6,7 +6,7 @@
 
           <div class="task-delete">
                <button @click="delTask()">
-                    <span class="material-symbols-outlined" :class="{ blue: props.task.priority == 0 }">
+                    <span class="material-symbols-outlined close" :class="{ blue: props.task.priority == 0 }">
                          close
                     </span>
                </button>
@@ -156,6 +156,9 @@ const submitEdit = (async () => {
 })
 </script>
 <style scoped>
+.close {
+ font-weight: 900;
+}
 .blue {
   color: var(--blue);
 }

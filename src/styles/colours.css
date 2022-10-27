@@ -81,6 +81,9 @@
 .blackish {
   color: var(--blackish);
 }
+.fontsize-24 {
+  font-size: 24px;
+}
 
 .blackish:hover {
   color: black;

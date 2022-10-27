@@ -1,8 +1,19 @@
 <template>
-    <aside class="task-component sticky-100  bg-white">
-        <h2>New task</h2>
+    <div class="center">
+        <button class="width-100 center block fontsize-24" @click="open = !open">
+            NEW TASK
+            <span v-if="!open" class="material-symbols-outlined">
+                expand_more
+            </span>
+            <span v-if="open" class="material-symbols-outlined">
+                expand_less
+            </span>
+        </button>
+
+        <div v-if="open">
+            <aside class="task-component bg-white">
         <form class="task-container">
-            <div class="task-element">
+            <div class="task-element mt-24">
                 <span class="font-sg">
                     Title *
                 </span>
@@ -38,67 +49,21 @@
             </div>
         </form>
     </aside>
-
+        </div>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue';
-import { useTaskStore } from '../store/task'
 
-const taskStore = useTaskStore();
-
-const description = ref('');
-const title = ref('');
-const priority = ref(0);
-
-const myPriority = (async (value) => {
-    priority.value = value;
-    console.log(priority.value);
-    return priority.value;
-})
-
-const onSubmit = (async (e) => {
-    e.preventDefault()
-    if (!title.value == '' && !description.value == '') {
-        await taskStore.addTask(title.value, description.value, priority.value);
-        await taskStore.getTasks();
-        title.value = '';
-        description.value = '';
-        priority.value = 0;
-    }
-})
-
-
-function getScrollHeight(elm){
-  let savedValue = elm.value
-  elm.value = ''
-  elm._baseScrollHeight = elm.scrollHeight
-  elm.value = savedValue
-}
-
-function onExpandableTextareaInput({ target:elm }){
-  // make sure the input event originated from a textarea and it's desired to be auto-expandable
-  if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
-  
-  let minRows = elm.getAttribute('data-min-rows')|0, rows;
-  !elm._baseScrollHeight && getScrollHeight(elm)
-
-  elm.rows = minRows
-//   console.log('minrows',minRows)
-
-  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-  elm.rows = minRows + rows
-//   console.log('elm.rows', elm.rows)
-//   console.log('rows',rows)
-
-
-}
-
-
-// global delegated event listener
-document.addEventListener('input', onExpandableTextareaInput)
-
+const open = ref(false)
+console.log(closed)
 </script>
 <style scoped>
+
+.material-symbols-outlined {
+    font-weight: 900;
+}
+
 .autoExpand{
     max-height: 250px;
 }
@@ -128,10 +93,7 @@ textarea {
     justify-content: center;
     align-items: center;
     padding: 8px 20px 20px 20px;
-    border-color: rgba(0, 0, 0, 1);
-    border-width: 1px;
-    border-style: solid;
-    height: 88vh;
+    border-top:  rgba(0, 0, 0, 1) 1px solid;
 }
 
 .task-container {

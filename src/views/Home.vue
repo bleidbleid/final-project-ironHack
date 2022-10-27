@@ -1,5 +1,6 @@
 <template>
   <NavBar class="sticky-0 z-index" />
+  <MobileTasker class="mobile"/>
   <section class="flex">
     <div class="task-creator is-4">
       <TaskCreator />
@@ -19,6 +20,7 @@ import Tasks from '../components/Tasks.vue';
 import Footer from '../components/Footer.vue';
 
 import { useTaskStore } from '../store/task';
+import MobileTasker from '../components/MobileTasker.vue';
 const taskStore = useTaskStore();
 
 taskStore.getTasks();
@@ -27,7 +29,9 @@ taskStore.getTasks();
 </script>
 
 <style scoped>
-
+.mobile {
+  display: none;
+}
 img {
   max-width: 100%;
   display: block;
@@ -90,6 +94,9 @@ figcaption {
  
   .task-creator {
   display: none;
+}
+.mobile {
+  display: block;
 }
 .is-4, .is-8 {
   width: 100%;
