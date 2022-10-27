@@ -89,7 +89,7 @@ figcaption {
 }
 @media screen and (max-width:768px) {
   .container {
-  column-count: 2;
+  column-count: 1;
   /* column-gap: 5px; */
 } 
 .is-4, .is-8 {
@@ -98,6 +98,10 @@ figcaption {
 }
 
 @media screen and (max-width:597px) {
+  .container {
+  column-count: 2;
+  /* column-gap: 5px; */
+} 
  
   .task-creator {
   display: none;

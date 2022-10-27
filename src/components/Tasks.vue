@@ -4,8 +4,8 @@
                <div class="card"
                     :class="{ bgRed: props.task.priority == 3 && props.task.is_complete }, { bgGreen: props.task.priority == 1 && props.task.is_complete }, { bgYellow: props.task.priority == 2 && props.task.is_complete }, { colorDone: !props.task.is_complete }">
 
-                    <div class="task-delete">
-                         <button @click="delTask()">
+                    <div  class="task-delete">
+                         <button v-if="!toEdit" @click="delTask()">
                               <span class="material-symbols-outlined close" :class="{ blue: props.task.priority == 0 && props.task.is_complete}">
                                    close
                               </span>
@@ -76,14 +76,14 @@
                                         edit_note
                                    </span>
                               </button>
-                              <div v-if="toEdit">
-                                   <button @click="submitEdit()" class="button bg-blackish"
-                                        :class="{ bgBlue: props.task.priority == 0 }">
-                                        Apply
-                                   </button>
+                              <div v-if="toEdit" class="center width-100 mt-24 flex space-between">
                                    <button @click="toEdit = !toEdit" class="button blackish"
                                         :class="{ blue: props.task.priority == 0 }">
                                         Cancel
+                                   </button>
+                                   <button @click="submitEdit()" class="button bg-blackish"
+                                        :class="{ bgBlue: props.task.priority == 0 }">
+                                        Apply
                                    </button>
                               </div>
                          </div>
@@ -114,7 +114,6 @@ const myPriority = (async (value) => {
      } else {
 
           priority.value = value;
-          console.log(priority.value);
           return priority.value;
      }
 })
@@ -143,7 +142,6 @@ function getScrollHeight(elm) {
 }
 
 function onExpandableTextareaInput({ target: elm }) {
-     console.log(1)
      // make sure the input event originated from a textarea and it's desired to be auto-expandable
      if (!elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA') return
 
@@ -175,10 +173,11 @@ const emits = defineEmits(['edit'])
 <style scoped>
 .date {
      font-size: 12px;
+     padding-right: 5px;
 }
 
 .close {
-     font-weight: 900;
+     font-weight: 500;
 }
 
 .blue {
@@ -273,7 +272,6 @@ const emits = defineEmits(['edit'])
      padding-right: 5px;
      padding-bottom: 5px;
      padding-left: 5px;
-     display: flex;
      position: relative;
      min-width: 20px;
      min-height: 20px;

@@ -12,4 +12,10 @@
 import { ref } from 'vue';
 </script>
 <style scoped>
+p {
+  font-size: 14px;
+}
+footer{
+  background-image: linear-gradient(var(--whiteish), var(--grey));
+}
 </style>
