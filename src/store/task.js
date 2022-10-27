@@ -18,7 +18,16 @@ export const useTaskStore = defineStore("task", {
             // console.log(task)
             return this.task
         },
-
+        async getOrdered() {
+            const { data: task, error } = await supabase
+                .from("task")
+                .select("*")
+                // .order("is_complete")
+                .order("priority", {ascending: false})
+                this.task = task
+            // console.log(task)
+            return this.task
+        },
         // EDIT TASK
         async editTask(title, description, id, priority) {
             try {

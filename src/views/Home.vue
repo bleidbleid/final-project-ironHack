@@ -1,13 +1,13 @@
 <template>
   <NavBar class="sticky-0 z-index" />
-  <MobileTasker class="mobile"/>
+  <MobileTasker class="mobile" @prior="orderPriority" @date="fetchTask"/>
   <section class="flex">
     <div class="task-creator is-4">
-      <TaskCreator @create="fetchTask" />
+      <TaskCreator @create="fetchTask" @prior="orderPriority" @date="fetchTask"/>
     </div>
     <div class="is-8 container">
         <!-- <Tasks :task="task" class=" task-div" v-for="task in taskStore.task"/> -->
-                <Tasks @edit="fetchTask" :task="task" class=" task-div" v-for="task in taskStore.task"/>
+                <Tasks  @edit="fetchTask" :task="task" class=" task-div" v-for="task in taskStore.task"/>
 
     </div>
   </section>
@@ -24,9 +24,12 @@ import MobileTasker from '../components/MobileTasker.vue';
 import { onMounted } from 'vue';
 const taskStore = useTaskStore();
 const fetchTask = () => {
-
   taskStore.getTasks();
 }
+
+const orderPriority  = () => {
+  taskStore.getOrdered();
+} 
 
 onMounted (() => {
   fetchTask();

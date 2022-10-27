@@ -37,22 +37,25 @@
                 <button @click="onSubmit" class="button bg-blue">Create</button>
             </div>
         </form>
+        <PrioritySorter @prior="emits('prior')" @date="emits('date')" class="bottom"/>
+
     </aside>
 
 </template>
 <script setup>
 import { ref } from 'vue';
 import { useTaskStore } from '../store/task'
+import PrioritySorter from './PrioritySorter.vue';
 
 const taskStore = useTaskStore();
 
 const description = ref('');
 const title = ref('');
 const priority = ref(0);
-const emits = defineEmits(['create']);
+const emits = defineEmits(['create','prior', 'date']);
 const myPriority = (async (value) => {
     priority.value = value;
-    console.log(priority.value);
+    // console.log(priority.value);
     return priority.value;
 })
 
@@ -100,6 +103,9 @@ function onExpandableTextareaInput({ target:elm }){
 
 </script>
 <style scoped>
+.width-90 {
+    width: 90%;
+}
 .autoExpand{
     max-height: 250px;
 }
@@ -126,7 +132,6 @@ textarea {
 .task-component {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding: 8px 20px 20px 20px;
     border-color: rgba(0, 0, 0, 1);
@@ -163,7 +168,6 @@ textarea {
     text-align: center;
     align-self: center;
     width: fit-content;
-    margin-top: 24px;
     padding: 5px 23px;
     font-size: 18px;
 }

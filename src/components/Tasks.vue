@@ -102,12 +102,12 @@ const props = defineProps({ task: Object });
 const taskStore = useTaskStore();
 const done = ref(props.task.is_complete);
 const toEdit = ref(false);
-const newTitle = ref(props.task.title);
-const newDescription = ref(props.task.description);
+
 
 const priority = ref(props.task.priority);
 const date = ref(props.task.created_at.slice(0, 10));
 
+const orderPlease = true;
 const myPriority = (async (value) => {
      if (priority.value == value) {
           priority.value = 0
@@ -153,10 +153,13 @@ function onExpandableTextareaInput({ target: elm }) {
      elm.rows = minRows + rows
 }
 
-// global delegated event listener
-// document.addEventListener('input', onExpandableTextareaInput)
 
 //change the task to editable
+const prior = () => {
+     emits('orderTasks')
+} 
+
+
 const allowEdit = () => {
      toEdit.value = true;
 }
@@ -168,7 +171,8 @@ const submitEdit = (async () => {
    
      toEdit.value = false;     
 })
-const emits = defineEmits(['edit'])
+
+const emits = defineEmits(['edit','orderTasks'])
 </script>
 <style scoped>
 .date {
@@ -209,7 +213,6 @@ const emits = defineEmits(['edit'])
      text-align: center;
      align-self: center;
      width: fit-content;
-     margin-top: 24px;
      padding: 5px 23px;
      font-size: 18px;
 }

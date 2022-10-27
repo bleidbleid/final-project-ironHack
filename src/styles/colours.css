@@ -51,6 +51,10 @@
   background-color: var(--whiteish);
   color: var(--blackish);
 }
+.bg-realwhite {
+  background-color: white;
+  color: var(--blackish);
+}
 
 .bg-grey, .bgGrey {
   background-color: var(--grey);
@@ -91,7 +95,7 @@
 }
 
 .border-blackish, .borderBlackish {
-  border: solid 1px var(--blackish);
+  border: solid 0.5px var(--blackish);
 }
 
 .bg-trans {

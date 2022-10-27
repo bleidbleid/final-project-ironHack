@@ -1,9 +1,28 @@
 .mt-16 {
     margin-top: 16px;
 }
-
+.max-width {
+    width: max-content;
+}
+.padding-20 {
+    padding: 15px 15px;
+}
+.fs-14 {
+    font-size: 14px;
+}
+.bottom {
+    position: absolute;
+    bottom: 0px;
+}
+.bottom-30 {
+    position: absolute;
+    bottom: 30px;
+}
 .mt-24 {
     margin-top: 24px;
+}
+.mb-24 {
+    margin-bottom: 24px;
 }
 .paddingr-0 {
     padding-right: 0px;
@@ -29,8 +48,19 @@
     width: 100%;
 }
 
+.width-90 {
+    width: 90%;
+}
+
+.width-50 {
+    width: 50%;
+}
+
 .z-index {
     z-index: +1;
+}
+.z-index-1 {
+    z-index: -1;
 }
 
 .font-sg {
