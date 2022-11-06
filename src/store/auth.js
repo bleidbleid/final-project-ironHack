@@ -55,3 +55,4 @@ export const useAuthStore = defineStore('auth', {
     ],
   },
 });
+if (useAuthStore.isAuth) router.push({ name: 'tasks' })

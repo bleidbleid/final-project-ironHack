@@ -19,3 +19,7 @@
   color: #272727;
   background-color: #efefef;
 }
+
+* {
+  border: solid 1px red;
+}

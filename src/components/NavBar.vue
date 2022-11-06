@@ -1,12 +1,12 @@
 <template>
     <nav class="navbar bg-blue sticky-0" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
+        <div>
             <router-link :to="{ name: 'home' }">
                 <img src="/logo.png" width="64" >
             </router-link>
         </div>
 
-        <div class="navbar-end">
+        <div>
             <button @click="onClick()" class="button bg-grey">Log out</button>
         </div>
     </nav>
@@ -34,22 +34,7 @@ async function onClick() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5vh;
     padding: 20px 36px;
-}
-
-.navbar-start {
-    align-items: stretch;
-    display: flex;
-    justify-content: flex-start;
-    margin-right: auto
-}
-
-.navbar-end {
-    display: flex;
-    width: 100%;
-    justify-content: right;
-    margin: auto;
 }
 
 </style>
