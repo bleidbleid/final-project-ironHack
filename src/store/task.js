@@ -9,10 +9,13 @@ export const useTaskStore = defineStore("task", {
     actions: {
         //SHOW THIS USERS TASKS
         async getTasks() {
+            const myUser = await supabase.auth.getUser()
+            const userId = myUser.data.user.id
+            console.log(userId)
             const { data: task, error } = await supabase
                 .from("task")
                 .select("*")
-                // .order("is_complete")
+                .eq('user_id', userId )
                 .order("id", { ascending: false })
             this.task = task
             // console.log(task)
